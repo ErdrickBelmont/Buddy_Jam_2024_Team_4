@@ -23,6 +23,8 @@ Global_Var="*res://Global_Var.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1040
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 
@@ -57,7 +59,8 @@ ui_down={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=2
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+textures/lossless_compression/force_png=true
