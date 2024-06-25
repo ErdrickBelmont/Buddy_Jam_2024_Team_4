@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://bq4tnwwwxkc0l"]
+
+[ext_resource type="Script" path="res://player_movement_script.gd" id="1_ybx2w"]
+[ext_resource type="Texture2D" uid="uid://bm70egjf2gsn6" path="res://A.jpg" id="2_b0hk6"]
+[ext_resource type="Script" path="res://rotateScript.gd" id="3_1x581"]
+[ext_resource type="PackedScene" uid="uid://divilrm8xpnrh" path="res://Pause_Menu.tscn" id="3_towcn"]
+[ext_resource type="Texture2D" uid="uid://b0248501jsv3j" path="res://P.jpg" id="4_i65a3"]
+[ext_resource type="Script" path="res://Area2D.gd" id="4_vioy0"]
+
+[sub_resource type="GDScript" id="GDScript_gbfty"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oh4fp"]
+size = Vector2(144, 143)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7girb"]
+radius = 13.0225
+
+[node name="Root_Node2D" type="Node2D"]
+script = SubResource("GDScript_gbfty")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 11.0
+offset_top = -5.0
+offset_right = 1162.0
+offset_bottom = 642.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.745
+anchor_top = 0.484
+anchor_right = 0.871
+anchor_bottom = 0.601
+offset_left = 0.504944
+offset_top = -0.14801
+offset_right = 0.478943
+offset_bottom = 0.152985
+text = "In front of the ship
+"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(388, 196)
+script = ExtResource("1_ybx2w")
+
+[node name="charCollider" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(552, 331)
+shape = SubResource("RectangleShape2D_oh4fp")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(554, 330)
+scale = Vector2(0.521739, 0.390374)
+texture = ExtResource("2_b0hk6")
+script = ExtResource("3_1x581")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(576, 321)
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+position = Vector2(699, 329)
+script = ExtResource("4_vioy0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+modulate = Color(0.909804, 0, 1, 1)
+position = Vector2(25, 1)
+scale = Vector2(6.22, 6.22)
+shape = SubResource("CapsuleShape2D_7girb")
+one_way_collision_margin = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="CharacterBody2D/Area2D"]
+position = Vector2(30, 2)
+scale = Vector2(0.415, 0.415)
+texture = ExtResource("4_i65a3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_towcn")]
+process_mode = 3
+offset_left = 837.0
+offset_top = 45.0
+offset_right = -1083.0
+offset_bottom = -995.0
+metadata/_edit_use_anchors_ = true
