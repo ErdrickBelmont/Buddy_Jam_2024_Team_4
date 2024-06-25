@@ -1,13 +1,18 @@
+
 [gd_scene load_steps=4 format=3 uid="uid://bq4tnwwwxkc0l"]
 
 [ext_resource type="PackedScene" uid="uid://dd8kuirq1mqtj" path="res://Player.tscn" id="1_08bqn"]
 [ext_resource type="PackedScene" uid="uid://btqjg4r3wu4oj" path="res://Choppable_Tree.tscn" id="3_sptj4"]
 [ext_resource type="PackedScene" uid="uid://divilrm8xpnrh" path="res://Pause_Menu.tscn" id="3_towcn"]
 
+
+
 [node name="Root_Node2D" type="Node2D"]
+
 
 [node name="player_prefab" parent="." groups=["player"] instance=ExtResource("1_08bqn")]
 collision_mask = 13
+
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
