@@ -1,18 +1,14 @@
-
-[gd_scene load_steps=4 format=3 uid="uid://bq4tnwwwxkc0l"]
+[gd_scene load_steps=5 format=3 uid="uid://bq4tnwwwxkc0l"]
 
 [ext_resource type="PackedScene" uid="uid://dd8kuirq1mqtj" path="res://Player.tscn" id="1_08bqn"]
+[ext_resource type="Script" path="res://update_label_script.gd" id="3_4qbf8"]
 [ext_resource type="PackedScene" uid="uid://btqjg4r3wu4oj" path="res://Choppable_Tree.tscn" id="3_sptj4"]
 [ext_resource type="PackedScene" uid="uid://divilrm8xpnrh" path="res://Pause_Menu.tscn" id="3_towcn"]
 
-
-
 [node name="Root_Node2D" type="Node2D"]
-
 
 [node name="player_prefab" parent="." groups=["player"] instance=ExtResource("1_08bqn")]
 collision_mask = 13
-
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -24,8 +20,65 @@ offset_right = -1083.0
 offset_bottom = -995.0
 metadata/_edit_use_anchors_ = true
 
+[node name="StatPanel" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/StatPanel"]
+layout_mode = 0
+offset_right = 124.0
+offset_bottom = 150.0
+columns = 2
+
+[node name="Wood" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
+layout_mode = 2
+text = "Wood:"
+
+[node name="WoodInt" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
+layout_mode = 2
+text = "test"
+script = ExtResource("3_4qbf8")
+
+[node name="Energy" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
+layout_mode = 2
+text = "Energy:"
+
+[node name="EnergyInt" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
+layout_mode = 2
+text = "test"
+script = ExtResource("3_4qbf8")
+
+[node name="energycap" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
+layout_mode = 2
+text = "	           /"
+
+[node name="EnergyCapInt" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
+layout_mode = 2
+text = "test"
+script = ExtResource("3_4qbf8")
+
+[node name="Fertilizer" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
+layout_mode = 2
+text = "Fertilizer:"
+
+[node name="FertilizerInt" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
+layout_mode = 2
+script = ExtResource("3_4qbf8")
+
 [node name="ChoppableTree" parent="." groups=["tree"] instance=ExtResource("3_sptj4")]
 position = Vector2(575, 620)
+scale = Vector2(4.44, 4.44)
+collision_mask = 3
+
+[node name="ChoppableTree2" parent="." groups=["tree"] instance=ExtResource("3_sptj4")]
+position = Vector2(1476, 819)
+scale = Vector2(4.44, 4.44)
+collision_mask = 3
+
+[node name="ChoppableTree3" parent="." groups=["tree"] instance=ExtResource("3_sptj4")]
+position = Vector2(1637, 286)
 scale = Vector2(4.44, 4.44)
 collision_mask = 3
 
@@ -33,3 +86,11 @@ collision_mask = 3
 [connection signal="area_exited" from="ChoppableTree" to="ChoppableTree" method="_on_area_exited"]
 [connection signal="mouse_entered" from="ChoppableTree" to="ChoppableTree" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="ChoppableTree" to="ChoppableTree" method="_on_mouse_exited"]
+[connection signal="area_entered" from="ChoppableTree2" to="ChoppableTree2" method="_on_area_entered"]
+[connection signal="area_exited" from="ChoppableTree2" to="ChoppableTree2" method="_on_area_exited"]
+[connection signal="mouse_entered" from="ChoppableTree2" to="ChoppableTree2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ChoppableTree2" to="ChoppableTree2" method="_on_mouse_exited"]
+[connection signal="area_entered" from="ChoppableTree3" to="ChoppableTree3" method="_on_area_entered"]
+[connection signal="area_exited" from="ChoppableTree3" to="ChoppableTree3" method="_on_area_exited"]
+[connection signal="mouse_entered" from="ChoppableTree3" to="ChoppableTree3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ChoppableTree3" to="ChoppableTree3" method="_on_mouse_exited"]

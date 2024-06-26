@@ -39,19 +39,23 @@ func _on_mouse_exited():
 	pass # Replace with function body.
 	
 func _process(delta):
-	if(cursor_select && mouse_on_tree && Input.is_action_just_pressed("left_Click")):
+	# if cursor's over the tree, its clicked, and the player has at least 1 energy left #&& Global_Var.lowerBoundCheck(Global_Var.get_referance("energy"),1)d
+	if(cursor_select && mouse_on_tree && Input.is_action_just_pressed("left_Click") && Global_Var.lowerBoundCheck(Global_Var.get_referance("energy"),1) ):
 		match current_tree_state:
 			tree_states.GROWN:
 				tree_health -= 1
+				Global_Var.add_to_var("wood",1)
+				Global_Var.add_to_var("energy", -1)
 				print(tree_health)
 				if(tree_health == 0):
 					current_tree_state = tree_states.CHOPPED
 					print("trees been chopped")
 			tree_states.CHOPPED:
-				current_tree_state = tree_states.FIRTALIZED
-				print("fertilized")
+				if(Global_Var.dic.fertilizer > 0):
+					current_tree_state = tree_states.FIRTALIZED
+					print("fertilized")
 			_:
-				print("tree already fertilzied")
+				print("other")
 			
 		
 
