@@ -19,7 +19,7 @@ var mouse_on_tree: bool = false
 
 
 func _on_area_entered(area):
-	#if(area.name == )
+	# gets yellow cursor child from tree
 	get_child(1,false).show()
 	cursor_select = true
 	

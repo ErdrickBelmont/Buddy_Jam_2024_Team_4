@@ -1,7 +1,7 @@
 extends Node
 
 
-var dic : Dictionary = {"wood": 0,"woodExportTracker": 0, "woodExportCap": 100, "energy": 0, "maxEnergy": 10, "fertilizer": 0,"quotaTracker":0, "quota": 10 }
+var dic : Dictionary = {"wood": 0,"woodExportTracker": 0, "woodExportCap": 100,"fortificationTracker": 0,"fortificationCost": 10, "energy": 0, "maxEnergy": 10, "fertilizer": 0,"quotaTracker":0, "quota": 100 }
 
 var base_fortified: bool = false
 
@@ -26,6 +26,10 @@ func get_referance(in_val: String) -> int:
 			return dic.quotaTracker
 		"quota":
 			return dic.quota
+		"fortificationTracker":
+			return dic.fortificationTracker
+		"fortificationCost":
+			return dic.fortificationCost
 		_:
 			return 0
 		
@@ -47,6 +51,10 @@ func set_var(key:String, new_value: int):
 			dic.quotaTracker = new_value
 		"quota":
 			dic.quota = new_value
+		"fortificationTracker":
+			dic.fortificationTracker = new_value
+		"fortificationCost":
+			dic.fortificationCost = new_value
 		_:
 			print("could not find variable")
 			
@@ -68,16 +76,20 @@ func add_to_var(key:String, new_value: int):
 			dic.quotaTracker += new_value
 		"quota":
 			dic.quota += new_value
+		"fortificationTracker":
+			dic.fortificationTracker += new_value
+		"fortificationCost":
+			dic.fortificationCost += new_value
 		_:
 			print("could not find variable")
 	
-#add negative number to subtract
+
 func upperBoundCheck(lesser:int, max:int) -> bool:
 	if (lesser < max):
 		return true
 	else:
 		return false
-func lowerBoundCheck(currentInt:int, minimumRequired:int):
+func lowerBoundCheck(currentInt:int, minimumRequired:int) -> bool:
 	if (currentInt < minimumRequired):
 		return false
 	else:

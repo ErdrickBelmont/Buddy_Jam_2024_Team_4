@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bq4tnwwwxkc0l"]
+[gd_scene load_steps=8 format=3 uid="uid://bq4tnwwwxkc0l"]
 
 [ext_resource type="PackedScene" uid="uid://dd8kuirq1mqtj" path="res://Player.tscn" id="1_08bqn"]
-[ext_resource type="Script" path="res://update_label_script.gd" id="3_4qbf8"]
+[ext_resource type="PackedScene" uid="uid://uahhdims1o8" path="res://stat_panel.tscn" id="3_ciejm"]
 [ext_resource type="PackedScene" uid="uid://btqjg4r3wu4oj" path="res://Choppable_Tree.tscn" id="3_sptj4"]
 [ext_resource type="PackedScene" uid="uid://divilrm8xpnrh" path="res://Pause_Menu.tscn" id="3_towcn"]
+[ext_resource type="Script" path="res://ship.gd" id="5_ysi78"]
+[ext_resource type="Texture2D" uid="uid://diak4cs683rih" path="res://S.png" id="6_hgds0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xe1mm"]
+size = Vector2(288, 188.5)
 
 [node name="Root_Node2D" type="Node2D"]
 
@@ -20,52 +25,7 @@ offset_right = -1083.0
 offset_bottom = -995.0
 metadata/_edit_use_anchors_ = true
 
-[node name="StatPanel" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/StatPanel"]
-layout_mode = 0
-offset_right = 124.0
-offset_bottom = 150.0
-columns = 2
-
-[node name="Wood" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
-layout_mode = 2
-text = "Wood:"
-
-[node name="WoodInt" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
-layout_mode = 2
-text = "test"
-script = ExtResource("3_4qbf8")
-
-[node name="Energy" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
-layout_mode = 2
-text = "Energy:"
-
-[node name="EnergyInt" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
-layout_mode = 2
-text = "test"
-script = ExtResource("3_4qbf8")
-
-[node name="energycap" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
-layout_mode = 2
-text = "	           /"
-
-[node name="EnergyCapInt" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
-layout_mode = 2
-text = "test"
-script = ExtResource("3_4qbf8")
-
-[node name="Fertilizer" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
-layout_mode = 2
-text = "Fertilizer:"
-
-[node name="FertilizerInt" type="Label" parent="CanvasLayer/StatPanel/GridContainer"]
-layout_mode = 2
-script = ExtResource("3_4qbf8")
+[node name="StatPanel" parent="CanvasLayer" instance=ExtResource("3_ciejm")]
 
 [node name="ChoppableTree" parent="." groups=["tree"] instance=ExtResource("3_sptj4")]
 position = Vector2(575, 620)
@@ -82,6 +42,52 @@ position = Vector2(1637, 286)
 scale = Vector2(4.44, 4.44)
 collision_mask = 3
 
+[node name="ship" type="Area2D" parent="."]
+position = Vector2(1023, 916)
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("5_ysi78")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ship"]
+position = Vector2(1, -126)
+shape = SubResource("RectangleShape2D_xe1mm")
+
+[node name="Sprite2D" type="Sprite2D" parent="ship"]
+position = Vector2(1.99998, -2.00002)
+scale = Vector2(0.356122, 0.25)
+texture = ExtResource("6_hgds0")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="ship"]
+visible = false
+
+[node name="Panel" type="Panel" parent="ship/CanvasLayer2"]
+anchors_preset = -1
+anchor_left = 0.38
+anchor_top = 0.178
+anchor_right = 0.67
+anchor_bottom = 0.432
+offset_left = 0.399963
+offset_top = -0.12001
+offset_right = -0.400024
+offset_bottom = -0.279999
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ship/CanvasLayer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 75.0
+offset_right = -17.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="returnToShip" type="Button" parent="ship/CanvasLayer2/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Return to ship "
+
 [connection signal="area_entered" from="ChoppableTree" to="ChoppableTree" method="_on_area_entered"]
 [connection signal="area_exited" from="ChoppableTree" to="ChoppableTree" method="_on_area_exited"]
 [connection signal="mouse_entered" from="ChoppableTree" to="ChoppableTree" method="_on_mouse_entered"]
@@ -94,3 +100,6 @@ collision_mask = 3
 [connection signal="area_exited" from="ChoppableTree3" to="ChoppableTree3" method="_on_area_exited"]
 [connection signal="mouse_entered" from="ChoppableTree3" to="ChoppableTree3" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="ChoppableTree3" to="ChoppableTree3" method="_on_mouse_exited"]
+[connection signal="area_entered" from="ship" to="ship" method="_on_area_entered"]
+[connection signal="area_exited" from="ship" to="ship" method="_on_area_exited"]
+[connection signal="pressed" from="ship/CanvasLayer2/Panel/HBoxContainer/returnToShip" to="ship" method="_on_return_to_ship_pressed"]

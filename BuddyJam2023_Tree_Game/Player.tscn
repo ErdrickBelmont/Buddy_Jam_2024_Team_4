@@ -16,15 +16,18 @@ radius = 13.0225
 [node name="player_prefab" type="CharacterBody2D"]
 position = Vector2(387, 194)
 collision_layer = 3
-collision_mask = 12
+collision_mask = 15
 script = ExtResource("1_yfync")
 
-[node name="charCollider" type="CollisionShape2D" parent="."]
-position = Vector2(552, 331)
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(684.684, 321.062)
+
+[node name="charCollider" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-132.684, 9.93842)
 shape = SubResource("RectangleShape2D_oh4fp")
 
-[node name="Sprite2D" type="Sprite2D" parent="charCollider"]
-position = Vector2(2, -1)
+[node name="Sprite2D" type="Sprite2D" parent="Area2D2/charCollider"]
+position = Vector2(1.99994, -1)
 scale = Vector2(0.521739, 0.390374)
 texture = ExtResource("2_6s85g")
 

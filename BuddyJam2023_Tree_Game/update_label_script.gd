@@ -30,6 +30,15 @@ func _ready():
 		"QuotaInt":
 			relevantGlobalInt = "quota"
 			self.text = str(Global_Var.get_referance("quota"))
+		"QuotaTrackerInt":
+			relevantGlobalInt = "quotaTracker"
+			self.text = str(Global_Var.get_referance("quotaTracker"))
+		"fortificationCostInt":
+			relevantGlobalInt = "fortificationCost"
+			self.text = str(Global_Var.get_referance("fortificationCost"))
+		"fortificationTrackerInt":
+			relevantGlobalInt = "fortificationTracker"
+			self.text = str(Global_Var.get_referance("fortificationTracker"))
 		_:
 			print("error: name of node attached not recognized")
 
