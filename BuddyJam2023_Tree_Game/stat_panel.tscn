@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://uahhdims1o8"]
+
+[ext_resource type="Script" path="res://update_label_script.gd" id="1_vyuw6"]
+
+[node name="StatPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 124.0
+offset_bottom = 150.0
+columns = 2
+
+[node name="Wood" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Wood:"
+
+[node name="WoodInt" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "test"
+script = ExtResource("1_vyuw6")
+
+[node name="Energy" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Energy:"
+
+[node name="EnergyInt" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "test"
+script = ExtResource("1_vyuw6")
+
+[node name="energycap" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "	           /"
+
+[node name="EnergyCapInt" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "test"
+script = ExtResource("1_vyuw6")
+
+[node name="Fertilizer" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Fertilizer:"
+
+[node name="FertilizerInt" type="Label" parent="GridContainer"]
+layout_mode = 2
+script = ExtResource("1_vyuw6")

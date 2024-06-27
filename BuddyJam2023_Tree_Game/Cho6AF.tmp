@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://btqjg4r3wu4oj"]
+
+[ext_resource type="Texture2D" uid="uid://dyvl342r7ub2b" path="res://T.jpg" id="1_xnv8a"]
+[ext_resource type="Texture2D" uid="uid://i286oe082tgw" path="res://squareCrosshair-export.png" id="2_72ete"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d460k"]
+size = Vector2(24, 32)
+
+[node name="ChoppableTree" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="tree_collider" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_d460k")
+
+[node name="chop_tree" type="Sprite2D" parent="Area2D"]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("1_xnv8a")
+
+[node name="tree_targetted" type="Sprite2D" parent="Area2D"]
+visible = false
+texture_filter = 1
+scale = Vector2(0.37, 0.505)
+texture = ExtResource("2_72ete")
+
+[connection signal="child_entered_tree" from="Area2D/tree_collider" to="Area2D/tree_targetted" method="_on_tree_collider_child_entered_tree"]
+[connection signal="child_exiting_tree" from="Area2D/tree_collider" to="Area2D/tree_targetted" method="_on_tree_collider_child_exiting_tree"]

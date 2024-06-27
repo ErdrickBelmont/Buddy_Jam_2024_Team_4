@@ -1,49 +1,75 @@
-[gd_scene load_steps=7 format=3 uid="uid://bq4tnwwwxkc0l"]
+[gd_scene load_steps=8 format=3 uid="uid://bq4tnwwwxkc0l"]
 
-[ext_resource type="PackedScene" uid="uid://bnx407bfco1td" path="res://scenes/areas/area_center.tscn" id="1_rytgd"]
-[ext_resource type="Script" path="res://scripts/player_movement_script.gd" id="1_ybx2w"]
-[ext_resource type="Texture2D" uid="uid://bm70egjf2gsn6" path="res://A.jpg" id="2_b0hk6"]
-[ext_resource type="Script" path="res://scripts/areaSpawn.gd" id="2_l7dfm"]
+[ext_resource type="PackedScene" uid="uid://dd8kuirq1mqtj" path="res://Player.tscn" id="1_08bqn"]
+[ext_resource type="PackedScene" uid="uid://uahhdims1o8" path="res://stat_panel.tscn" id="3_ciejm"]
+[ext_resource type="PackedScene" uid="uid://btqjg4r3wu4oj" path="res://Choppable_Tree.tscn" id="3_sptj4"]
+[ext_resource type="PackedScene" uid="uid://divilrm8xpnrh" path="res://Pause_Menu.tscn" id="3_towcn"]
+[ext_resource type="Script" path="res://ship.gd" id="5_ysi78"]
+[ext_resource type="Texture2D" uid="uid://diak4cs683rih" path="res://S.png" id="6_hgds0"]
 
-[sub_resource type="GDScript" id="GDScript_gbfty"]
-script/source = "extends Node2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oh4fp"]
-size = Vector2(144, 143)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xe1mm"]
+size = Vector2(288, 188.5)
 
 [node name="Root_Node2D" type="Node2D"]
-script = SubResource("GDScript_gbfty")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1151.0
-offset_bottom = 647.0
+[node name="player_prefab" parent="." groups=["player"] instance=ExtResource("1_08bqn")]
+collision_mask = 13
 
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_towcn")]
+process_mode = 3
+offset_left = 837.0
+offset_top = 45.0
+offset_right = -1083.0
+offset_bottom = -995.0
+metadata/_edit_use_anchors_ = true
+
+[node name="StatPanel" parent="CanvasLayer" instance=ExtResource("3_ciejm")]
+
+[node name="ChoppableTree" parent="." groups=["tree"] instance=ExtResource("3_sptj4")]
+position = Vector2(575, 620)
+scale = Vector2(4.44, 4.44)
+collision_mask = 3
+
+[node name="ChoppableTree2" parent="." groups=["tree"] instance=ExtResource("3_sptj4")]
+position = Vector2(1476, 819)
+scale = Vector2(4.44, 4.44)
+collision_mask = 3
+
+[node name="ChoppableTree3" parent="." groups=["tree"] instance=ExtResource("3_sptj4")]
+position = Vector2(1637, 286)
+scale = Vector2(4.44, 4.44)
+collision_mask = 3
+
+[node name="ship" type="Area2D" parent="."]
+position = Vector2(1023, 916)
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("5_ysi78")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ship"]
+position = Vector2(1, -126)
+shape = SubResource("RectangleShape2D_xe1mm")
+
+[node name="Sprite2D" type="Sprite2D" parent="ship"]
+position = Vector2(1.99998, -2.00002)
+scale = Vector2(0.356122, 0.25)
+texture = ExtResource("6_hgds0")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="ship"]
+visible = false
+
+[node name="Panel" type="Panel" parent="ship/CanvasLayer2"]
 anchors_preset = -1
-anchor_left = 0.41
-anchor_top = 0.325
-anchor_right = 0.527
-anchor_bottom = 0.448
-offset_left = 5.08997
-offset_top = 0.724991
-offset_right = -8.57703
-offset_bottom = -2.85602
-text = "In front of the ship
-"
+anchor_left = 0.38
+anchor_top = 0.178
+anchor_right = 0.67
+anchor_bottom = 0.432
+offset_left = 0.399963
+offset_top = -0.12001
+offset_right = -0.400024
+offset_bottom = -0.279999
 
 [node name="Area" parent="." instance=ExtResource("1_rytgd")]
 position = Vector2(552, 331)
@@ -55,12 +81,39 @@ position = Vector2(576, 321)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_ybx2w")
+[node name="HBoxContainer" type="HBoxContainer" parent="ship/CanvasLayer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 75.0
+offset_right = -17.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(552, 331)
-shape = SubResource("RectangleShape2D_oh4fp")
+[node name="returnToShip" type="Button" parent="ship/CanvasLayer2/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Return to ship "
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 position = Vector2(554, 330)
 scale = Vector2(0.521739, 0.390374)
 texture = ExtResource("2_b0hk6")
+[connection signal="area_entered" from="ChoppableTree" to="ChoppableTree" method="_on_area_entered"]
+[connection signal="area_exited" from="ChoppableTree" to="ChoppableTree" method="_on_area_exited"]
+[connection signal="mouse_entered" from="ChoppableTree" to="ChoppableTree" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ChoppableTree" to="ChoppableTree" method="_on_mouse_exited"]
+[connection signal="area_entered" from="ChoppableTree2" to="ChoppableTree2" method="_on_area_entered"]
+[connection signal="area_exited" from="ChoppableTree2" to="ChoppableTree2" method="_on_area_exited"]
+[connection signal="mouse_entered" from="ChoppableTree2" to="ChoppableTree2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ChoppableTree2" to="ChoppableTree2" method="_on_mouse_exited"]
+[connection signal="area_entered" from="ChoppableTree3" to="ChoppableTree3" method="_on_area_entered"]
+[connection signal="area_exited" from="ChoppableTree3" to="ChoppableTree3" method="_on_area_exited"]
+[connection signal="mouse_entered" from="ChoppableTree3" to="ChoppableTree3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ChoppableTree3" to="ChoppableTree3" method="_on_mouse_exited"]
+[connection signal="area_entered" from="ship" to="ship" method="_on_area_entered"]
+[connection signal="area_exited" from="ship" to="ship" method="_on_area_exited"]
+[connection signal="pressed" from="ship/CanvasLayer2/Panel/HBoxContainer/returnToShip" to="ship" method="_on_return_to_ship_pressed"]

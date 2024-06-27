@@ -16,7 +16,7 @@ func _physics_process(delta):
 	# Handle jump
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	
+	set_velocity(Vector2(0,0))
 	var vertical_direction = Input.get_axis("ui_up","ui_down")
 	var horizontal_direction = Input.get_axis("ui_left", "ui_right")
 	#diagonal in all directions
