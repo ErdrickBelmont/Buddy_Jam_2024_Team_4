@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b42uruiwu3at3"]
 
-[ext_resource type="Script" path="res://startButton.gd" id="1_l0p6e"]
+[ext_resource type="Script" path="res://scripts/startButton.gd" id="1_joct5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_84ixh"]
 font_size = 64
@@ -41,6 +41,6 @@ offset_right = -79.5361
 offset_bottom = -69.4
 text = "Start"
 expand_icon = true
-script = ExtResource("1_l0p6e")
+script = ExtResource("1_joct5")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

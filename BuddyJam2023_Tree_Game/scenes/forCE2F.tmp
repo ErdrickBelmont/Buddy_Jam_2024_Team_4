@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bq4tnwwwxkc0l"]
+[gd_scene load_steps=7 format=3 uid="uid://bq4tnwwwxkc0l"]
 
-[ext_resource type="Script" path="res://player_movement_script.gd" id="1_ybx2w"]
+[ext_resource type="PackedScene" uid="uid://bnx407bfco1td" path="res://scenes/areas/area_center.tscn" id="1_rytgd"]
+[ext_resource type="Script" path="res://scripts/player_movement_script.gd" id="1_ybx2w"]
 [ext_resource type="Texture2D" uid="uid://bm70egjf2gsn6" path="res://A.jpg" id="2_b0hk6"]
+[ext_resource type="Script" path="res://scripts/areaSpawn.gd" id="2_l7dfm"]
 
 [sub_resource type="GDScript" id="GDScript_gbfty"]
 script/source = "extends Node2D
@@ -43,6 +45,15 @@ offset_bottom = -2.85602
 text = "In front of the ship
 "
 
+[node name="AreaHolder" type="Node2D" parent="."]
+
+[node name="Area" parent="AreaHolder" instance=ExtResource("1_rytgd")]
+position = Vector2(552, 331)
+scale = Vector2(6, 6)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 321)
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_ybx2w")
 
@@ -55,5 +66,5 @@ position = Vector2(554, 330)
 scale = Vector2(0.521739, 0.390374)
 texture = ExtResource("2_b0hk6")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position = Vector2(576, 321)
+[node name="AreaSpawner" type="Node2D" parent="."]
+script = ExtResource("2_l7dfm")
