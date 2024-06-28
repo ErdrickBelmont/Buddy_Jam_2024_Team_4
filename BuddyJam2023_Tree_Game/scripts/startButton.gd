@@ -13,5 +13,4 @@ func _process(delta):
 
 
 func _on_pressed(): 
-	get_tree().change_scene_to_file("res://forest_entrance.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/forest_entrance.tscn");

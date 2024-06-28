@@ -22,7 +22,12 @@ var areas = {"center": ["left", "right", "top", "bottom"],
 			"topFork": ["left", "bottom", "right"],
 			"leftFork": ["top", "right", "bottom"],
 			"rightFork": ["left", "top", "bottom"] }
+
+#These two are necessary because of some really weird errors.
+var newMapNeeded = true; #When true, map can be generated
+var moveCooldown = true; #When true, player can move to another area
+
+#And these are more "tracking player's current position".
 var position = "0_0"; #lol, face
 var day = 1;
 var stormCounter = 0;
-#var moveScript = preload("res://scripts/movePlayer.gd").new();

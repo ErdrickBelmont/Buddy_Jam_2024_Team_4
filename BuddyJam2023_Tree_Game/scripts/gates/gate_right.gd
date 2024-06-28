@@ -1,5 +1,10 @@
 extends Node
 
 func _on_area_2d_body_entered(body):
-	body.position.x = -775;
-	Global_Var.moveScript.movePlayer(2);
+	print("Multiple entry3")
+	body.position.x = -750;
+	var parent = get_parent().get_parent().get_parent().get_parent().get_parent(); #Man fuck this lmfao
+	if(Global_Var.moveCooldown):
+		Global_Var.moveCooldown = false;
+		parent.get_node("Timer").start(0.3);
+		parent.get_node("RoomToRoom").call_deferred("movePlayer", 2);

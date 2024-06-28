@@ -18,23 +18,27 @@ var topDoorRooms = ["center", "bottomEdge", "bottomFork", "leftBottom", "rightBo
 
 func _ready():
 	#Start with the center room. This is always an area_center type.
-	numGenerated += 1;
-	Global_Var.map["0_0"] = "center";
-	queue.append_array(["1_0", "0_-1", "0_1", "-1_0"])
-	generateMap();
-	print(Global_Var.map);
+	if(Global_Var.newMapNeeded):
+		Global_Var.map["0_0"] = "center";
+		queue.append_array(["1_0", "0_-1", "0_1", "-1_0"])
+		generateMap();
+	print(queue);
+	Global_Var.newMapNeeded = false;
 	
 func generateMap():
 	#var previousRoom = "0_0_0_0";
-	while(numToGenerate > numGenerated):
+	while(queue.size() > 0):
 		var roomToAdd = queue.back();
-		if(!Global_Var.map.has(roomToAdd)): #Extra check because some were slipping through.
+		if(!Global_Var.map.has(roomToAdd) && roomToAdd != null): #Extra check because some were slipping through.
+			print(roomToAdd);
 			addRoom(roomToAdd);
-		else:
+		elif(roomToAdd != null):
 			queue.erase(roomToAdd);
 	
 func addRoom(code):
-	print("Code: " + code);
+	#Remove the area from the queue.
+	queue.erase(code);
+	print("Code: ", code);
 	#code is the name of the map area, ex: 0_0
 	var areaPicked = null;
 	numGenerated += 1;
@@ -57,12 +61,18 @@ func addRoom(code):
 			roomOptions = bottomDoorRooms;
 		else:
 			roomOptions = arrIntersect(roomOptions, topDoorRooms);
-	while(areaPicked == null || Global_Var.areas[areaPicked].size() <= (numToGenerate-numGenerated-queue.size())):
-		areaPicked = roomOptions[rng.randi_range(0, roomOptions.size()-1)]
+	print(numToGenerate);
+	print(queue)
+	while(areaPicked == null || Global_Var.areas[areaPicked].size() >= (numToGenerate-numGenerated-queue.size())):
+		var randValue = rng.randi_range(0, roomOptions.size()-1);
+		print(randValue)
+		areaPicked = roomOptions[randValue]
+		#Edge case: Not enough rooms generated but the queue is empty. We can't hit a dead end
+		if(Global_Var.areas[areaPicked].size() == 1 && queue.size() == 0 && numGenerated < numToGenerate):
+			areaPicked == null;
 	#Area has been selected. Add it to the map!
 	Global_Var.map[code] = areaPicked;
-	#And remove the area from the queue.
-	queue.erase(code);
+	print("Room type picked: " + areaPicked);
 	
 	#Add its neighbors to the queue if it has more than one gate.
 	if(Global_Var.areas[areaPicked].size() > 1):
@@ -72,38 +82,37 @@ func addRoom(code):
 			var leftArr = splitCode.duplicate();
 			leftArr[1] = str(int(leftArr[1]) - 1);
 			var leftCode = "_".join(leftArr);
+			print("Left neighbor added to queue: " + leftCode);
 			#If it's not in the map or queue, add it to the queue with code as previous.
 			if(!Global_Var.map.has(leftCode) && !queue.has(leftCode)):
-				print("Added new code " + leftCode + " to queue");
 				queue.append(leftCode);
 		#Add area to the right.
 		if(rightDoorRooms.has(areaPicked)):
 			var rightArr = splitCode.duplicate();
 			rightArr[1] = str(int(rightArr[1]) + 1);
 			var rightCode = "_".join(rightArr);
+			print("Right neighbor added to queue: " + rightCode);
 			#If it's not in the map or queue, add it to the queue with code as previous.
 			if(!Global_Var.map.has(rightCode) && !queue.has(rightCode)):
-				print("Added new code " + rightCode + " to queue");
 				queue.append(rightCode);
 		#Add area to the top.
 		if(topDoorRooms.has(areaPicked)):
 			var topArr = splitCode.duplicate();
 			topArr[0] = str(int(topArr[0]) + 1);
 			var topCode = "_".join(topArr);
+			print("Top neighbor added to queue: " + topCode);
 			#If it's not in the map or queue, add it to the queue with code as previous.
 			if(!Global_Var.map.has(topCode) && !queue.has(topCode)):
-				print("Added new code " + topCode + " to queue");
 				queue.append(topCode);
 		#Add area to the bottom.
 		if(bottomDoorRooms.has(areaPicked)):
 			var bottomArr = splitCode.duplicate();
 			bottomArr[0] = str(int(bottomArr[0]) - 1);
 			var bottomCode = "_".join(bottomArr);
+			print("Bottom neighbor added to queue: " + bottomCode);
 			#If it's not in the map or queue, add it to the queue with code as previous.
 			if(!Global_Var.map.has(bottomCode) && !queue.has(bottomCode)):
-				print("Added new code " + bottomCode + " to queue");
 				queue.append(bottomCode);
-	print("Picked an area: " + areaPicked + " at code " + code);
 	
 #Return whether a room has a neighbor in the given direction. True or false.
 func hasNeighbor(room, direction):
@@ -119,7 +128,6 @@ func hasNeighbor(room, direction):
 	if(direction == 3): #below: -1 to Y
 		neighborArr[0] = str(int(neighborArr[0])-1);
 	var neighborCode = "_".join(neighborArr);
-	print("neighbor code: " + neighborCode);
 	#Check
 	if(Global_Var.map.has(neighborCode)):
 		var neighborRoom = Global_Var.map[neighborCode]; #Imagine 0_0 (neighborCode) vs "center" (neighborRoom).
