@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://dd8kuirq1mqtj"]
+
+[ext_resource type="Script" path="res://scripts/player_movement_script.gd" id="1_yfync"]
+[ext_resource type="Texture2D" uid="uid://bm70egjf2gsn6" path="res://assets/sprites/A.jpg" id="2_6s85g"]
+[ext_resource type="Script" path="res://scripts/rotateScript.gd" id="3_to5mm"]
+[ext_resource type="Texture2D" uid="uid://b0248501jsv3j" path="res://assets/sprites/P.jpg" id="4_dnj0p"]
+[ext_resource type="AudioStream" uid="uid://iquxa2xo8vh6" path="res://assets/audio/grass footstep1.wav" id="5_kmpwk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oh4fp"]
+size = Vector2(144, 143)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnqhg"]
+radius = 72.9831
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7girb"]
+radius = 13.0225
+
+[node name="player_prefab" type="CharacterBody2D"]
+position = Vector2(387, 194)
+scale = Vector2(8, 8)
+collision_layer = 3
+collision_mask = 15
+script = ExtResource("1_yfync")
+SPEED = 3000.0
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="charCollider" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("RectangleShape2D_oh4fp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D2/charCollider"]
+scale = Vector2(0.521739, 0.390374)
+texture = ExtResource("2_6s85g")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2(576, 321)
+
+[node name="OrbitHolder" type="CollisionShape2D" parent="." groups=["playerCursor"]]
+position = Vector2(0.1875, -0.3125)
+shape = SubResource("CircleShape2D_pnqhg")
+script = ExtResource("3_to5mm")
+
+[node name="Area2D" type="Area2D" parent="OrbitHolder"]
+position = Vector2(130.684, -9.93844)
+collision_layer = 2
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitHolder/Area2D"]
+modulate = Color(0.909804, 0, 1, 1)
+position = Vector2(25, 1)
+scale = Vector2(6.22, 6.22)
+shape = SubResource("CapsuleShape2D_7girb")
+one_way_collision_margin = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="OrbitHolder/Area2D/CollisionShape2D"]
+position = Vector2(-0.431509, -0.170674)
+scale = Vector2(0.0587783, 0.0572944)
+texture = ExtResource("4_dnj0p")
+
+[node name="grassfootstep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_kmpwk")
