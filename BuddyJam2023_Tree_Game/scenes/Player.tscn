@@ -43,7 +43,7 @@ script = ExtResource("3_to5mm")
 [node name="Area2D" type="Area2D" parent="OrbitHolder"]
 position = Vector2(130.684, -9.93844)
 collision_layer = 2
-collision_mask = 12
+collision_mask = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitHolder/Area2D"]
 modulate = Color(0.909804, 0, 1, 1)
