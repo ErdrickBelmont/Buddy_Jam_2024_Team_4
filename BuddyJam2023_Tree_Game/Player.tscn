@@ -14,13 +14,13 @@ size = Vector2(144, 143)
 radius = 13.0225
 
 [node name="player_prefab" type="CharacterBody2D"]
-position = Vector2(387, 194)
+position = Vector2(0, -4)
 collision_layer = 3
 collision_mask = 15
 script = ExtResource("1_yfync")
 
 [node name="Area2D2" type="Area2D" parent="."]
-position = Vector2(684.684, 321.062)
+position = Vector2(130.684, -10.938)
 
 [node name="charCollider" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(-132.684, 9.93842)
@@ -32,17 +32,17 @@ scale = Vector2(0.521739, 0.390374)
 texture = ExtResource("2_6s85g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 321)
+position = Vector2(22, -11)
 
 [node name="OrbitHolder" type="CollisionShape2D" parent="." groups=["playerCursor"]]
-position = Vector2(554, 331)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_crj7a")
 script = ExtResource("3_to5mm")
 
 [node name="Area2D" type="Area2D" parent="OrbitHolder"]
 position = Vector2(130.684, -9.93844)
 collision_layer = 2
-collision_mask = 12
+collision_mask = 14
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitHolder/Area2D"]
 modulate = Color(0.909804, 0, 1, 1)
