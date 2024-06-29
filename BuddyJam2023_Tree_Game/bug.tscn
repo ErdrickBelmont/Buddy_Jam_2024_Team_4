@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://uebyoy3nrbnk"]
+[gd_scene load_steps=10 format=3 uid="uid://uebyoy3nrbnk"]
 
 [ext_resource type="Script" path="res://BugAI.gd" id="1_546et"]
 [ext_resource type="Texture2D" uid="uid://c3lvb71mc6wea" path="res://B.jpg" id="2_3gren"]
 [ext_resource type="Texture2D" uid="uid://i286oe082tgw" path="res://squareCrosshair-export.png" id="2_ebpx0"]
+[ext_resource type="AudioStream" uid="uid://c7y8h4ie7bngg" path="res://assets/audio/axe attack.wav" id="4_3sev4"]
+[ext_resource type="AudioStream" uid="uid://cfa4gir2fdxqg" path="res://assets/audio/bug attack.wav" id="5_dupek"]
+[ext_resource type="AudioStream" uid="uid://bix4206tra3t4" path="res://assets/audio/bug take damage.wav" id="6_kp8pg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxryx"]
 size = Vector2(47, 66)
@@ -51,6 +54,15 @@ collision_layer = 32
 [node name="radarCollider" type="CollisionShape2D" parent="radar"]
 scale = Vector2(6.39, 6.39)
 shape = SubResource("CircleShape2D_oypc1")
+
+[node name="axeattack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3sev4")
+
+[node name="bugattack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_dupek")
+
+[node name="bugtakedamage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_kp8pg")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

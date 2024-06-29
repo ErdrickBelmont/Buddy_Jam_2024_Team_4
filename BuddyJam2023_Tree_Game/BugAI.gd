@@ -8,6 +8,9 @@ var player_contact = false
 var bug_health = 3
 var cursor_select: bool = false
 var mouse_on_tree: bool = false
+@onready var axeattack = $axeattack
+@onready var bugattack = $bugattack
+@onready var bugtakedamage = $bugtakedamage
 
 # BUG: the _on_area_2d_body_entered's subtracting 1 from energy at start of game and IDK why.
 # ready function adding 1 energy is a jerry rigged solution to this problem
@@ -36,6 +39,7 @@ func _on_area_2d_body_exited(body):
 func _on_area_2d_body_entered(body):
 	player_contact = true
 	if player_contact == true:
+		bugattack.play()
 		Global_Var.add_to_var("energy", -1)
 
 
@@ -56,6 +60,8 @@ func _process(delta):
 	# if cursor's over the tree, its clicked, and the player has at least 1 energy left #&& Global_Var.lowerBoundCheck(Global_Var.get_referance("energy"),1)d
 	if(cursor_select && mouse_on_tree && Input.is_action_just_pressed("left_Click") && Global_Var.lowerBoundCheck(Global_Var.get_referance("energy"),1) ):
 		bug_health -= 1
+		axeattack.play()
+		bugtakedamage.play()
 		if bug_health == 0:
 			Global_Var.add_to_var("fertilizer", 1)
 			self.free()
