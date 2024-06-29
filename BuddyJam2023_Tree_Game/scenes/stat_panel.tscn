@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://uahhdims1o8"]
 
-[ext_resource type="Script" path="res://update_label_script.gd" id="1_vyuw6"]
+[ext_resource type="Script" path="res://scripts/update_label_script.gd" id="1_vyuw6"]
 
 [node name="StatPanel" type="Control"]
 layout_mode = 3

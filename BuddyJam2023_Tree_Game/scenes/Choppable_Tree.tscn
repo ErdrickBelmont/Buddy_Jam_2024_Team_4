@@ -1,21 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://btqjg4r3wu4oj"]
+[gd_scene load_steps=7 format=3 uid="uid://btqjg4r3wu4oj"]
 
 [ext_resource type="Script" path="res://scripts/tree_targetted.gd" id="1_uru5l"]
 [ext_resource type="Texture2D" uid="uid://i286oe082tgw" path="res://assets/sprites/squareCrosshair-export.png" id="2_rdfan"]
 [ext_resource type="Texture2D" uid="uid://dyvl342r7ub2b" path="res://assets/sprites/T.jpg" id="3_nqi6q"]
 [ext_resource type="AudioStream" uid="uid://chlgnqh2v5u6e" path="res://assets/audio/collect wood.wav" id="4_epgyf"]
+[ext_resource type="TileSet" uid="uid://csf741umc5mv1" path="res://assets/tilemap/tree_set.tres" id="5_uwjca"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d460k"]
-size = Vector2(24, 32)
+size = Vector2(198, 165.75)
 
 [node name="ChoppableTree" type="Area2D"]
 z_index = 3
+scale = Vector2(8, 8)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_uru5l")
 
 [node name="tree_collider" type="CollisionShape2D" parent="."]
 z_index = 2
+position = Vector2(2, 44.125)
 shape = SubResource("RectangleShape2D_d460k")
 
 [node name="tree_targetted" type="Sprite2D" parent="."]
@@ -23,13 +26,20 @@ visible = false
 show_behind_parent = true
 z_index = 1
 texture_filter = 1
-scale = Vector2(0.37, 0.505)
+scale = Vector2(3.188, 4.35)
 texture = ExtResource("2_rdfan")
 
 [node name="chop_tree" type="Sprite2D" parent="."]
+visible = false
 show_behind_parent = true
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("3_nqi6q")
 
 [node name="collectwood" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_epgyf")
+
+[node name="sprite" type="TileMap" parent="."]
+position = Vector2(128, 128)
+tile_set = ExtResource("5_uwjca")
+format = 2
+layer_0/tile_data = PackedInt32Array(-1, 1, 0)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://djl4d3slwcf1w"]
 
-[ext_resource type="Script" path="res://ship.gd" id="1_c7eyp"]
-[ext_resource type="Texture2D" uid="uid://diak4cs683rih" path="res://S.png" id="2_4k1hj"]
+[ext_resource type="Script" path="res://scripts/ship.gd" id="1_c7eyp"]
+[ext_resource type="Texture2D" uid="uid://diak4cs683rih" path="res://assets/sprites/S.png" id="2_4k1hj"]
 [ext_resource type="AudioStream" uid="uid://dlnfkpef6hnwk" path="res://assets/audio/Base Theme.mp3" id="3_akmt1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xe1mm"]

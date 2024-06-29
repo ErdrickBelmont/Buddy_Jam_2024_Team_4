@@ -6,6 +6,7 @@ extends Node2D
 var numToGenerate = 8 + (2*Global_Var.stormCounter);
 var numGenerated = 0;
 var queue = []; #Rooms queued to add.
+var spawnNode; #For generating actual bugs/trees
 
 #Randomness shortcut
 var rng = RandomNumberGenerator.new()
@@ -16,12 +17,24 @@ var leftDoorRooms = ["center", "rightEdge", "rightUp", "rightBottom", "rightFork
 var bottomDoorRooms = ["center", "topEdge", "topFork", "leftUp", "rightUp", "rightFork", "leftFork", "topBottom"];
 var topDoorRooms = ["center", "bottomEdge", "bottomFork", "leftBottom", "rightBottom", "rightFork", "leftFork", "topBottom"];
 
+#Dictionary of trees in each area. Each tree has an x, y, and state, corresponding to index 0, 1, 2 in the subarray.
+#Basically, the key is the room code, and then the value is an array of 
+var treeDict;
+
 func _ready():
+	#print(get_parent().get_parent().get_parent().get_children());
+	#print(get_tree().root.get_node("Root_Node2D").get_node("RoomToRoom"));
+	spawnNode = get_tree().root.get_node("Root_Node2D").get_node("RoomToRoom");
+	#print(spawnNode)
+	treeDict = Global_Var.treeDict;
 	#Start with the center room. This is always an area_center type.
 	if(Global_Var.newMapNeeded):
 		Global_Var.map["0_0"] = "center";
 		queue.append_array(["1_0", "0_-1", "0_1", "-1_0"])
+		#Generate and place trees in center area
+		generateTrees("0_0");
 		generateMap();
+		spawnNode.spawnTrees("0_0");
 	#print(queue);
 	Global_Var.newMapNeeded = false;
 	
@@ -32,6 +45,8 @@ func generateMap():
 		if(!Global_Var.map.has(roomToAdd) && roomToAdd != null): #Extra check because some were slipping through.
 			#print(roomToAdd);
 			addRoom(roomToAdd);
+			generateTrees(roomToAdd);
+			#print(Global_Var.treeDict);
 		elif(roomToAdd != null):
 			queue.erase(roomToAdd);
 	
@@ -149,3 +164,42 @@ func arrIntersect(arr1, arr2):
 		if arr2.has(arrItem):
 			intersection.append(arrItem);
 	return intersection;
+
+#Generates trees
+func generateTrees(code):
+	#print("Code: ", code);
+	if(treeDict.has(code)): #Don't overwrite any trees! Edge case.
+		return;
+	treeDict[code] = [];
+	#Determine number of trees to place in each area, from 3 to 8
+	var treesToGenerate = rng.randi_range(3, 8);
+	var x;
+	var y;
+	while(treeDict[code].size() < treesToGenerate):
+		var valid = false;
+		if(rng.randi_range(0,1) == 0): #Place on left side of map
+			x = rng.randi_range(-5600, -1550)
+		else: #Place on right side
+			x = rng.randi_range(1550,5600)
+		if(rng.randi_range(0,1) == 0): #Place on top half of map
+			y = rng.randi_range(-3400,-1750)
+		else: #Place on bottom half
+			y = rng.randi_range(1750, 2500)
+		if(!treeIntersection(code, x, y)):
+			valid = true;
+		if(valid):
+			var treeType = rng.randi_range(0, 2);
+			treeDict[code].append([x, y, treeType]);
+	Global_Var.treeDict[code] = treeDict[code];
+	
+#Checks if the tree overlaps with another tree.
+#Each tree is 1584 wide and 1326 tall.
+#Returns true if the xy intersects with another tree, false if not
+func treeIntersection(code, x, y):
+	for tree in treeDict[code]:
+		var treeX = tree[0];
+		var treeY = tree[1];
+		if(abs(treeX-x) < 1584 && abs(treeY-y) < 1326):
+			return true;
+	return false;
+	
