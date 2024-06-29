@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://btqjg4r3wu4oj"]
+[gd_scene load_steps=6 format=3 uid="uid://btqjg4r3wu4oj"]
 
 [ext_resource type="Script" path="res://scripts/tree_targetted.gd" id="1_uru5l"]
 [ext_resource type="Texture2D" uid="uid://i286oe082tgw" path="res://assets/sprites/squareCrosshair-export.png" id="2_rdfan"]
 [ext_resource type="Texture2D" uid="uid://dyvl342r7ub2b" path="res://assets/sprites/T.jpg" id="3_nqi6q"]
+[ext_resource type="AudioStream" uid="uid://chlgnqh2v5u6e" path="res://assets/audio/collect wood.wav" id="4_epgyf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d460k"]
 size = Vector2(24, 32)
@@ -29,3 +30,6 @@ texture = ExtResource("2_rdfan")
 show_behind_parent = true
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("3_nqi6q")
+
+[node name="collectwood" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_epgyf")

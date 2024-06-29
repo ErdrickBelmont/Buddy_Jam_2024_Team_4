@@ -6,6 +6,7 @@ var tree_health = 5
 var current_tree_state = tree_states.GROWN
 var cursor_select: bool = false
 var mouse_on_tree: bool = false
+@onready var collectwood = $collectwood
 
 #func _on_tree_collider_child_entered_tree(area):	
 	##f area.is_in_group("player"):
@@ -44,6 +45,7 @@ func _process(delta):
 		match current_tree_state:
 			tree_states.GROWN:
 				tree_health -= 1
+				collectwood.play()
 				Global_Var.add_to_var("wood",1)
 				Global_Var.add_to_var("energy", -1)
 				print(tree_health)
