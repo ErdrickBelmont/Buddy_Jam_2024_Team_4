@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://bq4tnwwwxkc0l"]
+
+[ext_resource type="PackedScene" uid="uid://bnx407bfco1td" path="res://scenes/areas/area_center.tscn" id="1_rytgd"]
+[ext_resource type="Script" path="res://scripts/player_movement_script.gd" id="1_ybx2w"]
+[ext_resource type="Texture2D" uid="uid://bm70egjf2gsn6" path="res://A.jpg" id="2_b0hk6"]
+[ext_resource type="Script" path="res://scripts/areaSpawn.gd" id="2_l7dfm"]
+
+[sub_resource type="GDScript" id="GDScript_gbfty"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oh4fp"]
+size = Vector2(144, 143)
+
+[node name="Root_Node2D" type="Node2D"]
+script = SubResource("GDScript_gbfty")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 647.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.41
+anchor_top = 0.325
+anchor_right = 0.527
+anchor_bottom = 0.448
+offset_left = 5.08997
+offset_top = 0.724991
+offset_right = -8.57703
+offset_bottom = -2.85602
+text = "In front of the ship
+"
+
+[node name="Area" parent="." instance=ExtResource("1_rytgd")]
+position = Vector2(552, 331)
+scale = Vector2(6, 6)
+script = ExtResource("2_l7dfm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 321)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_ybx2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(552, 331)
+shape = SubResource("RectangleShape2D_oh4fp")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(554, 330)
+scale = Vector2(0.521739, 0.390374)
+texture = ExtResource("2_b0hk6")
