@@ -1,42 +1,43 @@
 [gd_scene load_steps=8 format=3 uid="uid://dd8kuirq1mqtj"]
 
-[ext_resource type="Script" path="res://player_movement_script.gd" id="1_yfync"]
-[ext_resource type="Texture2D" uid="uid://bm70egjf2gsn6" path="res://A.jpg" id="2_6s85g"]
-[ext_resource type="Script" path="res://rotateScript.gd" id="3_to5mm"]
-[ext_resource type="Texture2D" uid="uid://b0248501jsv3j" path="res://P.jpg" id="4_dnj0p"]
+[ext_resource type="Script" path="res://scripts/player_movement_script.gd" id="1_yfync"]
+[ext_resource type="Texture2D" uid="uid://bm70egjf2gsn6" path="res://assets/sprites/A.jpg" id="2_6s85g"]
+[ext_resource type="Script" path="res://scripts/rotateScript.gd" id="3_to5mm"]
+[ext_resource type="Texture2D" uid="uid://b0248501jsv3j" path="res://assets/sprites/P.jpg" id="4_dnj0p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oh4fp"]
 size = Vector2(144, 143)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_crj7a"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_pnqhg"]
+radius = 72.9831
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7girb"]
 radius = 13.0225
 
 [node name="player_prefab" type="CharacterBody2D"]
 position = Vector2(387, 194)
+scale = Vector2(8, 8)
 collision_layer = 3
 collision_mask = 15
 script = ExtResource("1_yfync")
+SPEED = 3000.0
 
 [node name="Area2D2" type="Area2D" parent="."]
-position = Vector2(684.684, 321.062)
 
 [node name="charCollider" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(-132.684, 9.93842)
 shape = SubResource("RectangleShape2D_oh4fp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D2/charCollider"]
-position = Vector2(1.99994, -1)
 scale = Vector2(0.521739, 0.390374)
 texture = ExtResource("2_6s85g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2(576, 321)
 
 [node name="OrbitHolder" type="CollisionShape2D" parent="." groups=["playerCursor"]]
-position = Vector2(554, 331)
-shape = SubResource("RectangleShape2D_crj7a")
+position = Vector2(0.1875, -0.3125)
+shape = SubResource("CircleShape2D_pnqhg")
 script = ExtResource("3_to5mm")
 
 [node name="Area2D" type="Area2D" parent="OrbitHolder"]

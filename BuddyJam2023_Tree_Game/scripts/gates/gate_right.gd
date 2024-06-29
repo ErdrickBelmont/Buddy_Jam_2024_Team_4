@@ -1,7 +1,7 @@
 extends Node
 
 func _on_area_2d_body_entered(body):
-	print("Multiple entry3")
+	#print("Multiple entry3")
 	body.position.x = -750;
 	var parent = get_parent().get_parent().get_parent().get_parent().get_parent(); #Man fuck this lmfao
 	if(Global_Var.moveCooldown):

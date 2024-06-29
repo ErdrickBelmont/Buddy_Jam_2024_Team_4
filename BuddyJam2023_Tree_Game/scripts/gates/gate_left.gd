@@ -1,7 +1,7 @@
 extends Node
 
 func _on_area_2d_body_entered(body):
-	print("Multiple entry2")
+	#print("Multiple entry2")
 	body.position.x = 750;
 	var parent = get_parent().get_parent().get_parent().get_parent().get_parent(); #Man fuck this lmfao
 	#Parent is Root_Node2D in forest_entrance

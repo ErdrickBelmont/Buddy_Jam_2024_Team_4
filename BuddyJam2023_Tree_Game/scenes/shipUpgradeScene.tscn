@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ddslg5bnvlshq"]
 
-[ext_resource type="Script" path="res://shipUpgradeScene.gd" id="1_2qq1v"]
-[ext_resource type="Script" path="res://update_label_script.gd" id="1_vjhf5"]
+[ext_resource type="Script" path="res://scripts/shipUpgradeScene.gd" id="1_2qq1v"]
+[ext_resource type="Script" path="res://scripts/update_label_script.gd" id="1_vjhf5"]
 
 [sub_resource type="Theme" id="Theme_aon5i"]
 
