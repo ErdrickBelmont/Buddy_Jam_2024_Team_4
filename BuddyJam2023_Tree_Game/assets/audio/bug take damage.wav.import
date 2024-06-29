@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bix4206tra3t4"
+path="res://.godot/imported/bug take damage.wav-0f7c7106f43786d91ca5a3ba7405ba2f.sample"
+
+[deps]
+
+source_file="res://assets/audio/bug take damage.wav"
+dest_files=["res://.godot/imported/bug take damage.wav-0f7c7106f43786d91ca5a3ba7405ba2f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

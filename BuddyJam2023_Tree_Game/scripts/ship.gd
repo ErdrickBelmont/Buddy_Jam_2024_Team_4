@@ -1,5 +1,5 @@
 extends Area2D
-
+@onready var basetheme = $basetheme
 func _ready():
 	get_child(-1).set_visible(false) 
 
@@ -23,10 +23,12 @@ func _ready():
 
 
 func _on_area_entered(area):
+	basetheme.play()
 	get_child(-1).set_visible(true) 
 	print("area entered")
 
 func _on_area_exited(area):
+	basetheme.stop()
 	get_child(-1).set_visible(false) 
 	pass # Replace with function body.
 

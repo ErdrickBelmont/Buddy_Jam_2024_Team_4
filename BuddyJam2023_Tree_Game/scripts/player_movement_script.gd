@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @export var SPEED = 500.0
+@onready var grassfootstep = $grassfootstep
 #const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -23,6 +24,8 @@ func _physics_process(delta):
 	if vertical_direction && horizontal_direction:
 		velocity.x = horizontal_direction * SPEED
 		velocity.y = vertical_direction * SPEED
+		
+		
 	# Horizontal left and right direction
 	elif horizontal_direction:
 		velocity.x = horizontal_direction * SPEED
@@ -30,4 +33,7 @@ func _physics_process(delta):
 		velocity.y = vertical_direction * SPEED
 	else:
 		set_velocity(Vector2(0,0))
+	#if vertical_direction || horizontal_direction:
+		#grassfootstep.play()
+		
 	move_and_slide()
