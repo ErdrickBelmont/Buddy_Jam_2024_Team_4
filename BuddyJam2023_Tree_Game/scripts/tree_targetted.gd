@@ -44,6 +44,7 @@ func _process(delta):
 	if(cursor_select && mouse_on_tree && Input.is_action_just_pressed("left_Click") && Global_Var.lowerBoundCheck(Global_Var.get_referance("energy"),1) ):
 		match current_tree_state:
 			tree_states.GROWN:
+				SignalBus.emit_signal("player_swing")
 				tree_health -= 1
 				collectwood.play()
 				Global_Var.add_to_var("wood",1)
