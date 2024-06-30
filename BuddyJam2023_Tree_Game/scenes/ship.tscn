@@ -1,23 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://djl4d3slwcf1w"]
+[gd_scene load_steps=6 format=3 uid="uid://djl4d3slwcf1w"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_c7eyp"]
 [ext_resource type="Texture2D" uid="uid://diak4cs683rih" path="res://assets/sprites/S.png" id="2_4k1hj"]
+[ext_resource type="Texture2D" uid="uid://gvgcsw3r5dh5" path="res://assets/sprites/ship.png" id="2_j4xhx"]
 [ext_resource type="AudioStream" uid="uid://dlnfkpef6hnwk" path="res://assets/audio/Base Theme.mp3" id="3_akmt1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xe1mm"]
-size = Vector2(288, 188.5)
+size = Vector2(283, 211.25)
 
 [node name="ship" type="Area2D"]
+z_index = 3
 position = Vector2(-4, 16)
+scale = Vector2(8, 8)
 collision_layer = 17
 collision_mask = 17
 script = ExtResource("1_c7eyp")
 
+[node name="Ship" type="Sprite2D" parent="."]
+texture = ExtResource("2_j4xhx")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -126)
+position = Vector2(-48.5, 11.375)
 shape = SubResource("RectangleShape2D_xe1mm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1.99998, -2.00002)
 scale = Vector2(0.356122, 0.25)
 texture = ExtResource("2_4k1hj")

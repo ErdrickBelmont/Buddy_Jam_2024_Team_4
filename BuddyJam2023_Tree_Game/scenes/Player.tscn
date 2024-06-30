@@ -16,6 +16,7 @@ radius = 72.9831
 radius = 13.0225
 
 [node name="player_prefab" type="CharacterBody2D"]
+z_index = 3
 position = Vector2(387, 194)
 scale = Vector2(8, 8)
 collision_layer = 3

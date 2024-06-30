@@ -35,11 +35,11 @@ func _ready():
 		generateTrees("0_0");
 		generateMap();
 		spawnNode.spawnTrees("0_0");
+		spawnNode.shipCheck();
 	#print(queue);
 	Global_Var.newMapNeeded = false;
 	
 func generateMap():
-	#var previousRoom = "0_0_0_0";
 	while(queue.size() > 0):
 		var roomToAdd = queue.back();
 		if(!Global_Var.map.has(roomToAdd) && roomToAdd != null): #Extra check because some were slipping through.
@@ -49,6 +49,7 @@ func generateMap():
 			#print(Global_Var.treeDict);
 		elif(roomToAdd != null):
 			queue.erase(roomToAdd);
+	
 	
 func addRoom(code):
 	#Remove the area from the queue.
@@ -175,21 +176,32 @@ func generateTrees(code):
 	var treesToGenerate = rng.randi_range(3, 8);
 	var x;
 	var y;
+	var attempts = 0;
 	while(treeDict[code].size() < treesToGenerate):
-		var valid = false;
 		if(rng.randi_range(0,1) == 0): #Place on left side of map
-			x = rng.randi_range(-5600, -1550)
+			if(Global_Var.position == "0_0"):
+				x = rng.randi_range(-5600, -2475)
+			else:
+				x = rng.randi_range(-5600, -1550)
 		else: #Place on right side
-			x = rng.randi_range(1550,5600)
+			if(Global_Var.position == "0_0"):
+				x = rng.randi_range(3360, 5600)
+			else:
+				x = rng.randi_range(1550, 5600)
 		if(rng.randi_range(0,1) == 0): #Place on top half of map
 			y = rng.randi_range(-3400,-1750)
 		else: #Place on bottom half
 			y = rng.randi_range(1750, 2500)
 		if(!treeIntersection(code, x, y)):
-			valid = true;
-		if(valid):
 			var treeType = rng.randi_range(0, 2);
 			treeDict[code].append([x, y, treeType]);
+			attempts = 0;
+		else:
+			attempts += 1;
+			if(attempts > 500):
+				#Reshuffle trees. Prevents infinite loops
+				treesToGenerate = rng.randi_range(3, 8);
+				treeDict[code] = [];
 	Global_Var.treeDict[code] = treeDict[code];
 	
 #Checks if the tree overlaps with another tree.

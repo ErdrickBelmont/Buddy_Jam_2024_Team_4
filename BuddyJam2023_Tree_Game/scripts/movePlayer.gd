@@ -28,8 +28,8 @@ func movePlayer(direction):
 func updatePos():
 	var newPos = Global_Var.map[Global_Var.position];
 	print(get_children());
-	for node in get_children():
-		#print(node);
+	for node in get_children(): #Delete trees, bugs, ship, etc that aren't in the new area
+		print(node)
 		remove_child(node);
 		node.queue_free();
 	areaHolder.get_child(0).queue_free(); #Remove the old area
@@ -41,6 +41,7 @@ func updatePos():
 	#newArea.position.y += 325;
 	#print("newPos: " + newPos);
 	areaHolder.add_child(newArea); #Add the new area
+	shipCheck();
 	spawnTrees(Global_Var.position);
 	
 func spawnTrees(code):
@@ -60,3 +61,14 @@ func spawnTrees(code):
 		#print("Intantiated tree with x=" + str(tree[0]) + ", y=" + str(tree[1]) + ", and sprite" + str(tree[2]));
 	#print("Kids");
 	#print(get_parent().get_children());
+
+func shipCheck():
+	var room = Global_Var.position;
+	#Only need to do anything if it's the center room. If not, nothing happens.
+	if(room == "0_0"):
+		print("Spawning ship");
+		var shipScene = load("res://scenes/ship.tscn");
+		var instance = shipScene.instantiate();
+		add_child(instance);
+		instance.position.x = 450;
+		instance.position.y = -450;
