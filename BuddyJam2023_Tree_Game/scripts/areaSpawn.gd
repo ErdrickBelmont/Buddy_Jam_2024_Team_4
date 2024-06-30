@@ -188,7 +188,7 @@ func generateTrees(code):
 		if(!treeIntersection(code, x, y)):
 			valid = true;
 		if(valid):
-			var treeType = rng.randi_range(0, 2);
+			var treeType = rng.randi_range(0, 0);
 			treeDict[code].append([x, y, treeType]);
 	Global_Var.treeDict[code] = treeDict[code];
 	

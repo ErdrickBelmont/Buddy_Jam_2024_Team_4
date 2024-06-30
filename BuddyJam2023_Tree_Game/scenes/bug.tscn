@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://uebyoy3nrbnk"]
 
 [ext_resource type="Script" path="res://scripts/BugAI.gd" id="1_546et"]
-[ext_resource type="Texture2D" uid="uid://c3lvb71mc6wea" path="res://B.jpg" id="2_3gren"]
 [ext_resource type="Texture2D" uid="uid://i286oe082tgw" path="res://assets/sprites/squareCrosshair-export.png" id="2_ebpx0"]
+[ext_resource type="Texture2D" uid="uid://b3jjp4faaheqs" path="res://assets/sprites/bug_sheet.png" id="3_nvmo4"]
 [ext_resource type="AudioStream" uid="uid://c7y8h4ie7bngg" path="res://assets/audio/axe attack.wav" id="4_3sev4"]
 [ext_resource type="AudioStream" uid="uid://cfa4gir2fdxqg" path="res://assets/audio/bug attack.wav" id="5_dupek"]
 [ext_resource type="AudioStream" uid="uid://bix4206tra3t4" path="res://assets/audio/bug take damage.wav" id="6_kp8pg"]
@@ -34,8 +34,8 @@ shape = SubResource("RectangleShape2D_jxryx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -1)
-scale = Vector2(0.175406, 0.175406)
-texture = ExtResource("2_3gren")
+texture = ExtResource("3_nvmo4")
+hframes = 4
 
 [node name="Area2D" type="Area2D" parent="."]
 visibility_layer = 3
