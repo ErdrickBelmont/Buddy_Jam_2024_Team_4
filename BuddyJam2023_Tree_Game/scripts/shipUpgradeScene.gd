@@ -1,5 +1,5 @@
 extends Control
-
+@onready var sell = $sell
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,6 +17,7 @@ func _on_submit_wood_quota_pressed():
 	var quota_difference : int = (Global_Var.get_referance("quota") - Global_Var.get_referance("qoutaTracker"))
 	
 	if Global_Var.upperBoundCheck(Global_Var.get_referance("qoutaTracker"),Global_Var.get_referance("quota")):
+		sell.play()
 		if Global_Var.get_referance("wood") + Global_Var.get_referance("qoutaTracker") < Global_Var.get_referance("quota"):
 			Global_Var.add_to_var("quotaTracker", Global_Var.get_referance("wood"))
 			Global_Var.set_var("wood",0)
@@ -29,6 +30,7 @@ func _on_build_fortitifcation_pressed():
 	var fortification_difference : int = Global_Var.get_referance("fortificationCost") - Global_Var.get_referance("fortificationTracker")
 	
 	if Global_Var.upperBoundCheck(Global_Var.get_referance("fortificationTracker"),Global_Var.get_referance("fortificationCost")):
+		sell.play()
 		if Global_Var.get_referance("wood") + Global_Var.get_referance("fortificationTracker") < Global_Var.get_referance("fortificationCost"):
 			Global_Var.add_to_var("fortificationTracker", Global_Var.get_referance("wood"))
 			Global_Var.set_var("wood",0)

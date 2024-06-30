@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://btqjg4r3wu4oj"]
+[gd_scene load_steps=8 format=3 uid="uid://btqjg4r3wu4oj"]
 
 [ext_resource type="Script" path="res://scripts/tree_targetted.gd" id="1_uru5l"]
 [ext_resource type="Texture2D" uid="uid://i286oe082tgw" path="res://assets/sprites/squareCrosshair-export.png" id="2_rdfan"]
 [ext_resource type="Texture2D" uid="uid://dyvl342r7ub2b" path="res://assets/sprites/T.jpg" id="3_nqi6q"]
 [ext_resource type="AudioStream" uid="uid://chlgnqh2v5u6e" path="res://assets/audio/collect wood.wav" id="4_epgyf"]
 [ext_resource type="TileSet" uid="uid://csf741umc5mv1" path="res://assets/tilemap/tree_set.tres" id="5_uwjca"]
+[ext_resource type="AudioStream" uid="uid://bn5bh5q7ogvbd" path="res://assets/audio/fertilize.wav" id="6_kntr2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d460k"]
 size = Vector2(198, 165.75)
@@ -43,3 +44,6 @@ position = Vector2(128, 128)
 tile_set = ExtResource("5_uwjca")
 format = 2
 layer_0/tile_data = PackedInt32Array(-1, 1, 0)
+
+[node name="fertilize" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_kntr2")

@@ -7,6 +7,7 @@ var current_tree_state = tree_states.GROWN
 var cursor_select: bool = false
 var mouse_on_tree: bool = false
 @onready var collectwood = $collectwood
+@onready var fertilize = $fertilize
 
 #func _on_tree_collider_child_entered_tree(area):	
 	##f area.is_in_group("player"):
@@ -54,6 +55,7 @@ func _process(delta):
 					print("trees been chopped")
 			tree_states.CHOPPED:
 				if(Global_Var.dic.fertilizer > 0):
+					fertilize.play()
 					current_tree_state = tree_states.FIRTALIZED
 					print("fertilized")
 			_:
