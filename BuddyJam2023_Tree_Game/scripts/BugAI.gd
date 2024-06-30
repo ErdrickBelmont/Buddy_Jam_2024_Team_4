@@ -62,6 +62,8 @@ func _process(delta):
 		bug_health -= 1
 		axeattack.play()
 		bugtakedamage.play()
+		
+		SignalBus.player_swing.emit()
 		if bug_health == 0:
 			Global_Var.add_to_var("fertilizer", 1)
 			self.free()
