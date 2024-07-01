@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://djl4d3slwcf1w"]
+[gd_scene load_steps=5 format=3 uid="uid://b0xgrvvhn1m1l"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_c7eyp"]
 [ext_resource type="Texture2D" uid="uid://diak4cs683rih" path="res://assets/sprites/S.png" id="2_4k1hj"]
 [ext_resource type="Texture2D" uid="uid://gvgcsw3r5dh5" path="res://assets/sprites/ship.png" id="2_j4xhx"]
-[ext_resource type="AudioStream" uid="uid://dlnfkpef6hnwk" path="res://assets/audio/Base Theme.mp3" id="3_akmt1"]
-[ext_resource type="AudioStream" uid="uid://bnf7xwikcwjbj" path="res://assets/audio/sell.wav" id="5_cp6q6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xe1mm"]
 size = Vector2(283, 211.25)
@@ -60,12 +58,6 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Return to ship "
-
-[node name="basetheme" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_akmt1")
-
-[node name="sell" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_cp6q6")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

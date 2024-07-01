@@ -1,8 +1,9 @@
 extends Control
 @onready var sell = $sell
-
+@onready var basetheme = $basetheme
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	basetheme.play()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -10,8 +11,10 @@ func _process(delta):
 	pass
 
 func _on_next_day_pressed():
+	
 	Global_Var.storm_reset()
-	get_tree().change_scene_to_file("res://forest_entrance.tscn")
+	get_tree().change_scene_to_file("res://scenes/forest_entrance.tscn")
+	basetheme.stop()
 
 func _on_submit_wood_quota_pressed():
 	var quota_difference : int = (Global_Var.get_referance("quota") - Global_Var.get_referance("qoutaTracker"))

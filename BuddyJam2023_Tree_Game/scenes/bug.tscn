@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://uebyoy3nrbnk"]
+[gd_scene load_steps=10 format=3 uid="uid://bnny80yrelus3"]
 
 [ext_resource type="Script" path="res://scripts/BugAI.gd" id="1_546et"]
 [ext_resource type="Texture2D" uid="uid://i286oe082tgw" path="res://assets/sprites/squareCrosshair-export.png" id="2_ebpx0"]
@@ -41,7 +41,7 @@ hframes = 4
 [node name="Area2D" type="Area2D" parent="."]
 visibility_layer = 3
 position = Vector2(1, 2)
-collision_layer = 3
+collision_layer = 128
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
