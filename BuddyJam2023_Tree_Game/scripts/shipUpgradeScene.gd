@@ -12,6 +12,7 @@ func _process(delta):
 
 func _on_next_day_pressed():
 	Global_Var.stormCounter -= 1;
+	Global_Var.daily_reset()
 	if(Global_Var.stormCounter <= 0):
 		Global_Var.stormCounter = 3;
 		Global_Var.storm_reset()

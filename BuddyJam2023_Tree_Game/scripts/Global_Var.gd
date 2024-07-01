@@ -38,14 +38,14 @@ var bugDict = {};
 var ship;
 
 #David's variables
-var dic : Dictionary = {"wood": 0,"woodExportTracker": 0, "woodExportCap": 100,"fortificationTracker": 0,"fortificationCost": 10, "energy": 0, "maxEnergy": 10, "fertilizer": 0,"quotaTracker":0, "quota": 100 }
+var dic : Dictionary = {"wood": 0,"woodExportTracker": 0, "woodExportCap": 100,"fortificationTracker": 0,"fortificationCost": 10, "energy": 0, "maxEnergy": 250, "fertilizer": 0,"quotaTracker":0, "quota": 100 }
 
 var base_fortified: bool = false
 
 func _ready():
 	set_var("energy",dic.maxEnergy)
 
-func get_referance(in_val: String) -> int:
+func get_referance(in_val: String):
 	match in_val:
 		"wood":
 			return dic.wood
@@ -67,6 +67,10 @@ func get_referance(in_val: String) -> int:
 			return dic.fortificationTracker
 		"fortificationCost":
 			return dic.fortificationCost
+		"map":
+			return dic.map
+		"treeDict":
+			return dic.treeDict
 		_:
 			return 0
 		
@@ -132,11 +136,21 @@ func lowerBoundCheck(currentInt:int, minimumRequired:int) -> bool:
 	else:
 		return true
 
+func daily_reset():
+	set_var("energy",dic.maxEnergy)
+	base_fortified = false
+	for key in treeDict:
+		var roomList = treeDict.get(key)
+		for tree in roomList:
+			if tree[2] == 3:
+				treeDict.get(key).erase(tree)
+
 func storm_reset():
+	base_fortified = false
 	set_var("energy",dic.maxEnergy)
 	set_var("woodExportTracker",0)
 	set_var("quotaTracker",0)
 	newMapNeeded = true
-	treeDict = {};
+	#treeDict = {};
 	bugDict = {};
 

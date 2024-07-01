@@ -222,7 +222,8 @@ func generateBugs(code):
 		y = rng.randi_range(-3400, 2500)
 		bugDict[code].append([x, y]);
 	print(bugDict[code]);
-	Global_Var.bugDict[code] = bugDict[code];
+	if bugDict[code] != null:
+		Global_Var.bugDict[code] = bugDict[code];
 	
 #Generates trees
 func generateTrees(code):
