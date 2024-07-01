@@ -23,6 +23,9 @@ var treeDict;
 var bugDict;
 
 func _ready():
+	startGeneration();
+	
+func startGeneration():
 	#print(get_parent().get_parent().get_parent().get_children());
 	#print(get_tree().root.get_node("Root_Node2D").get_node("RoomToRoom"));
 	spawnNode = get_tree().root.get_node("Root_Node2D").get_node("RoomToRoom");

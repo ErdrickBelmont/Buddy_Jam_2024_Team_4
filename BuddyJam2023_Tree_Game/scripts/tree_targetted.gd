@@ -28,7 +28,7 @@ func _ready():
 	for n in range(Global_Var.treeDict[room].size()):
 		var tree = Global_Var.treeDict[room][n];
 		#Only necessary if the tree has already been instantiated, because on first-time spawn it will always be GROWN
-		if(tree.size() > 3):
+		if(tree.size() > 3 && tree[3] != null):
 			var treeName = tree[3].name;
 			if(str(treeName) == name): 
 				treeDictIndex = n;
