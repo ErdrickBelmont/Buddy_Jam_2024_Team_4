@@ -193,11 +193,7 @@ func generateTrees(code):
 		else: #Place on bottom half
 			y = rng.randi_range(1750, 2500)
 		if(!treeIntersection(code, x, y)):
-
-			valid = true;
-		if(valid):
 			var treeType = rng.randi_range(0, 0);
-
 			treeDict[code].append([x, y, treeType]);
 			attempts = 0;
 		else:

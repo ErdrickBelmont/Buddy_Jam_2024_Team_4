@@ -1,0 +1,189 @@
+[gd_scene load_steps=8 format=3 uid="uid://by53jnt4fhqj6"]
+
+[ext_resource type="Script" path="res://shipUpgradeScene.gd" id="1_2qq1v"]
+[ext_resource type="Script" path="res://update_label_script.gd" id="1_vjhf5"]
+
+[sub_resource type="Theme" id="Theme_aon5i"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_uv51u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6yr24"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_1caxr"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_7vvwc"]
+font_size = 48
+
+[node name="ShipUpgradeScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2qq1v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.846
+anchor_top = 0.023
+anchor_right = 0.999
+anchor_bottom = 0.965
+offset_left = -0.320068
+offset_top = 0.079998
+offset_right = -0.0800781
+offset_bottom = 0.399963
+
+[node name="Build_Fortitifcation" type="Button" parent="VBoxContainer"]
+modulate = Color(1, 0.301961, 0.423529, 0.784314)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Build Fortifiications"
+
+[node name="submit_Wood_Quota" type="Button" parent="VBoxContainer"]
+modulate = Color(1, 0.301961, 0.423529, 1)
+self_modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Export Wood for Quota"
+
+[node name="Next_Day" type="Button" parent="VBoxContainer"]
+modulate = Color(1, 0.301961, 0.423529, 0.784314)
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_aon5i")
+text = "Rest For Next Day"
+icon = SubResource("PortableCompressedTexture2D_uv51u")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.846
+anchor_top = 0.023
+anchor_right = 0.999
+anchor_bottom = 0.965
+offset_left = -335.32
+offset_top = 0.0799999
+offset_right = -323.08
+offset_bottom = -14.6
+
+[node name="Panel" type="Panel" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="fortificationTrackerInt" type="Label" parent="VBoxContainer2/Panel"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_top = 4.0
+offset_right = -175.0
+offset_bottom = -0.136017
+text = "TEST"
+label_settings = SubResource("LabelSettings_6yr24")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_vjhf5")
+
+[node name="slash" type="Label" parent="VBoxContainer2/Panel"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_left = 138.0
+offset_top = 25.0
+offset_right = -98.0
+offset_bottom = 1.86398
+text = "
+/"
+label_settings = SubResource("LabelSettings_1caxr")
+
+[node name="fortificationCostInt" type="Label" parent="VBoxContainer2/Panel"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_left = 172.0
+offset_top = 4.0
+offset_bottom = -0.112
+text = "TEST"
+label_settings = SubResource("LabelSettings_7vvwc")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_vjhf5")
+
+[node name="Panel2" type="Panel" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuotaTrackerInt" type="Label" parent="VBoxContainer2/Panel2"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_top = 4.0
+offset_right = -175.0
+offset_bottom = -0.136017
+text = "TEST"
+label_settings = SubResource("LabelSettings_6yr24")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_vjhf5")
+
+[node name="slash" type="Label" parent="VBoxContainer2/Panel2"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_left = 138.0
+offset_top = 25.0
+offset_right = -98.0
+offset_bottom = 1.86398
+text = "
+/"
+label_settings = SubResource("LabelSettings_1caxr")
+
+[node name="QuotaInt" type="Label" parent="VBoxContainer2/Panel2"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_left = 172.0
+offset_top = 4.0
+offset_bottom = -0.112
+text = "TEST"
+label_settings = SubResource("LabelSettings_7vvwc")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_vjhf5")
+
+[node name="Panel3" type="Panel" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WoodName" type="Label" parent="VBoxContainer2/Panel3"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_left = -2.0
+offset_top = 7.0
+offset_right = -5.0
+offset_bottom = -144.172
+text = "Wood"
+label_settings = SubResource("LabelSettings_6yr24")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WoodInt" type="Label" parent="VBoxContainer2/Panel3"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_top = 151.0
+offset_right = -3.0
+offset_bottom = -0.171997
+text = "TEST"
+label_settings = SubResource("LabelSettings_6yr24")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_vjhf5")
+
+[connection signal="pressed" from="VBoxContainer/Build_Fortitifcation" to="." method="_on_build_fortitifcation_pressed"]
+[connection signal="pressed" from="VBoxContainer/submit_Wood_Quota" to="." method="_on_submit_wood_quota_pressed"]
+[connection signal="pressed" from="VBoxContainer/Next_Day" to="." method="_on_next_day_pressed"]
