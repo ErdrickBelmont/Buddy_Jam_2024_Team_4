@@ -58,3 +58,9 @@ func _on_player_swing():
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name.contains("swing"):
 		swinging = false
+	else:
+		print(anim_name)
+
+func _on_swing_finished():
+	swinging = false
+	
