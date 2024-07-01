@@ -27,9 +27,10 @@ func movePlayer(direction):
 
 func updatePos():
 	var newPos = Global_Var.map[Global_Var.position];
-	print(get_children());
+	#print("GetChildren")
+	#print(get_children());
 	for node in get_children(): #Delete trees, bugs, ship, etc that aren't in the new area
-		print(node)
+		#print(node)
 		remove_child(node);
 		#node.queue_free();
 	areaHolder.get_child(0).queue_free(); #Remove the old area
@@ -62,8 +63,8 @@ func spawnTrees(code):
 		add_child(instance);
 		instance.position.x = tree[0];
 		instance.position.y = tree[1];
-		print("Added tree:");
-		print(instance);
+		#print("Added tree:");
+		#print(instance);
 		var sprite = instance.get_node("sprite"); #is a tilemap cell
 		#print(sprite.get_cell_source_id(0, Vector2(-1, -1)))
 		sprite.set_cell(0, Vector2(-1, -1), 1, Vector2(tree[2], 0)); #tree[2] is set to the coord 0/1/2 (full grown, different variants) or 3 (chopped) or 4 (fertilized)
@@ -85,14 +86,14 @@ func spawnBugs(code):
 		add_child(instance);
 		instance.position.x = bug[0];
 		instance.position.y = bug[1];
-		print("Added bug:");
-		print(instance);
+		#print("Added bug:");
+		#print(instance);
 
 func shipCheck():
 	var room = Global_Var.position;
 	#Only need to do anything if it's the center room. If not, nothing happens.
 	if(room == "0_0"):
-		print("Spawning ship");
+		#print("Spawning ship");
 		var shipScene = load("res://scenes/ship.tscn");
 		var instance;
 		if (Global_Var.ship == null):

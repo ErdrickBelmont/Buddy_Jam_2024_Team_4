@@ -23,6 +23,7 @@ var treeDict;
 var bugDict;
 
 func _ready():
+	#print(get_stack())
 	startGeneration();
 	
 func startGeneration():
@@ -38,7 +39,15 @@ func startGeneration():
 		queue.append_array(["1_0", "0_-1", "0_1", "-1_0"])
 		#Generate and place trees in center area
 		generateTrees("0_0");
-		generateMap();
+		var returner = generateMap();
+		#print(returner)
+		while(returner != 0):
+			#print("Hey!")
+			Global_Var.map["0_0"] = "center";
+			queue.append_array(["1_0", "0_-1", "0_1", "-1_0"])
+			#Generate and place trees in center area
+			generateTrees("0_0");
+			returner = generateMap(); #Generate a new map
 		#print("Generated rooms")
 		spawnNode.spawnTrees("0_0");
 		#print("Generated trees")
@@ -47,13 +56,16 @@ func startGeneration():
 	#print(queue);
 	Global_Var.newMapNeeded = false;
 	#print("Generated the whole map")
+	spawnNode.call_deferred("updatePos");
 	
 func generateMap():
 	while(queue.size() > 0):
 		var roomToAdd = queue.back();
 		if(!Global_Var.map.has(roomToAdd) && roomToAdd != null): #Extra check because some were slipping through.
 			#print(roomToAdd);
-			addRoom(roomToAdd);
+			var try = addRoom(roomToAdd);
+			if(try == -1):
+				return -1;
 			generateTrees(roomToAdd);
 			generateBugs(roomToAdd);
 			#print("Generated room " + roomToAdd);
@@ -62,6 +74,7 @@ func generateMap():
 		elif(roomToAdd != null):
 			queue.erase(roomToAdd);
 	#print(Global_Var.map.size());
+	return 0; #Successful generation
 	
 	
 func addRoom(code):
@@ -100,8 +113,17 @@ func addRoom(code):
 		#print(areaPicked);
 		if (Global_Var.areas[areaPicked].size() > (numToGenerate-numGenerated-queue.size())):
 			attempts += 1;
-		if(attempts > 100000):
-			break;
+		if(attempts > 1000): #It's a lost cause, just start from the bottom again
+			Global_Var.map = {};
+			Global_Var.treeDict = {};
+			Global_Var.bugDict = {}
+			treeDict = {};
+			bugDict = {};
+			queue = [];
+			numGenerated = 0;
+			Global_Var.newMapNeeded = true;
+			#print("Failed, had to restart")
+			return -1;
 		#Edge case: Not enough rooms generated but the queue is empty. We can't hit a dead end
 		if(Global_Var.areas[areaPicked].size() == 1 && queue.size() == 0 && numGenerated < numToGenerate):
 			areaPicked == null;

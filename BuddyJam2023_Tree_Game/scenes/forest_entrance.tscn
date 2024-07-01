@@ -10,9 +10,9 @@
 script/source = "extends Node2D
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	print(\"Goomba\")
-	get_node(\"RoomToRoom\").updatePos();
+#func _ready():
+	#print(\"Goomba\")
+	#get_node(\"RoomToRoom\").updatePos();
 "
 
 [node name="Root_Node2D" type="Node2D"]
