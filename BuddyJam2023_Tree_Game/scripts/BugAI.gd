@@ -11,12 +11,14 @@ var mouse_on_tree: bool = false
 @onready var axeattack = $axeattack
 @onready var bugattack = $bugattack
 @onready var bugtakedamage = $bugtakedamage
+var room;
 
 # BUG: the _on_area_2d_body_entered's subtracting 1 from energy at start of game and IDK why.
 # ready function adding 1 energy is a jerry rigged solution to this problem
 
 
 func _ready():
+	room = Global_Var.position;
 	Global_Var.add_to_var("energy", 1)
 func _physics_process(delta):
 	if player_chase:
@@ -63,6 +65,7 @@ func _process(delta):
 		axeattack.play()
 		bugtakedamage.play()
 		if bug_health == 0:
+			#Global_Var.
 			Global_Var.add_to_var("fertilizer", 1)
 			self.free()
 			

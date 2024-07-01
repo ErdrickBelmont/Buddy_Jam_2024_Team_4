@@ -1,7 +1,7 @@
 extends Area2D
 @onready var basetheme = $basetheme
 func _ready():
-	get_child(-1).set_visible(false) 
+	get_node("CanvasLayer2").set_visible(false) 
 
 #func resume():
 	#get_tree().paused = false
