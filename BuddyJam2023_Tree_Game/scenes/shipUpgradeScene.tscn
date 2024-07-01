@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddslg5bnvlshq"]
+[gd_scene load_steps=10 format=3 uid="uid://ddslg5bnvlshq"]
 
 [ext_resource type="Script" path="res://scripts/shipUpgradeScene.gd" id="1_2qq1v"]
 [ext_resource type="Script" path="res://scripts/update_label_script.gd" id="1_vjhf5"]
+[ext_resource type="AudioStream" uid="uid://dlnfkpef6hnwk" path="res://assets/audio/Base Theme.mp3" id="3_n74rj"]
+[ext_resource type="AudioStream" uid="uid://bnf7xwikcwjbj" path="res://assets/audio/sell.wav" id="4_4okk3"]
 
 [sub_resource type="Theme" id="Theme_aon5i"]
 
@@ -183,6 +185,12 @@ label_settings = SubResource("LabelSettings_6yr24")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_vjhf5")
+
+[node name="basetheme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_n74rj")
+
+[node name="sell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4okk3")
 
 [connection signal="pressed" from="VBoxContainer/Build_Fortitifcation" to="." method="_on_build_fortitifcation_pressed"]
 [connection signal="pressed" from="VBoxContainer/submit_Wood_Quota" to="." method="_on_submit_wood_quota_pressed"]

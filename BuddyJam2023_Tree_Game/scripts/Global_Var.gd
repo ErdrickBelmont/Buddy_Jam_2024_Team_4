@@ -5,7 +5,7 @@ extends Node
 #var fertilizer = 0
 #var quota = 10
 
-var map = {}; #Dictionary containing all the current areas on the map. Format X_Y from the center area 0_0. Like XY coordinates.
+var map = {} #Dictionary containing all the current areas on the map. Format X_Y from the center area 0_0. Like XY coordinates.
 #Dictionary of areas, with key = area name & value = array with types of gates.
 var areas = {"center": ["left", "right", "top", "bottom"],
 			"bottomEdge": ["top"],
@@ -24,17 +24,17 @@ var areas = {"center": ["left", "right", "top", "bottom"],
 			"rightFork": ["left", "top", "bottom"] }
 
 #These two are necessary because of some really weird errors.
-var newMapNeeded = true; #When true, map can be generated
-var moveCooldown = true; #When true, player can move to another area
+var newMapNeeded = true #When true, map can be generated
+var moveCooldown = true #When true, player can move to another area
 
 #And these are more "tracking player's current position".
-var position = "0_0"; #lol, face
-var day = 1;
-var stormCounter = 0;
+var position = "0_0" #lol, face
+var day = 1
+var stormCounter = 0
 
 #Dictionaries for storing current trees & bugs on the map
-var treeDict = {};
-var bugDict = {};
+var treeDict = {}
+var bugDict = {}
 
 #David's variables
 var dic : Dictionary = {"wood": 0,"woodExportTracker": 0, "woodExportCap": 100,"fortificationTracker": 0,"fortificationCost": 10, "energy": 0, "maxEnergy": 10, "fertilizer": 0,"quotaTracker":0, "quota": 100 }
