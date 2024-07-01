@@ -39,10 +39,14 @@ func startGeneration():
 		#Generate and place trees in center area
 		generateTrees("0_0");
 		generateMap();
+		#print("Generated rooms")
 		spawnNode.spawnTrees("0_0");
+		#print("Generated trees")
 		spawnNode.shipCheck();
+		#print("Ship's checked in, Cap'n")
 	#print(queue);
 	Global_Var.newMapNeeded = false;
+	#print("Generated the whole map")
 	
 func generateMap():
 	while(queue.size() > 0):
@@ -52,6 +56,9 @@ func generateMap():
 			addRoom(roomToAdd);
 			generateTrees(roomToAdd);
 			generateBugs(roomToAdd);
+			#print("Generated room " + roomToAdd);
+			#print("Queue left: ");
+			#print(queue)
 			#print(Global_Var.treeDict);
 		elif(roomToAdd != null):
 			queue.erase(roomToAdd);
@@ -85,10 +92,16 @@ func addRoom(code):
 			roomOptions = arrIntersect(roomOptions, topDoorRooms);
 	#print(numToGenerate);
 	#print(queue)
+	var attempts = 0;
 	while(areaPicked == null || Global_Var.areas[areaPicked].size() >= (numToGenerate-numGenerated-queue.size())):
 		var randValue = rng.randi_range(0, roomOptions.size()-1);
 		#print(randValue)
 		areaPicked = roomOptions[randValue]
+		#print(areaPicked);
+		if (Global_Var.areas[areaPicked].size() > (numToGenerate-numGenerated-queue.size())):
+			attempts += 1;
+		if(attempts > 500):
+			break;
 		#Edge case: Not enough rooms generated but the queue is empty. We can't hit a dead end
 		if(Global_Var.areas[areaPicked].size() == 1 && queue.size() == 0 && numGenerated < numToGenerate):
 			areaPicked == null;
@@ -217,11 +230,13 @@ func generateTrees(code):
 			attempts = 0;
 		else:
 			attempts += 1;
+			#print("Epic tree fail")
 			if(attempts > 500):
 				#Reshuffle trees. Prevents infinite loops
 				treesToGenerate = rng.randi_range(3, 8);
 				treeDict[code] = [];
 	Global_Var.treeDict[code] = treeDict[code];
+	#print("finished generating trees")
 	
 #Checks if the tree overlaps with another tree.
 #Each tree is 1584 wide and 1326 tall.
