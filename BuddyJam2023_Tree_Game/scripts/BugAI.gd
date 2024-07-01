@@ -67,7 +67,10 @@ func _process(delta):
 		
 		SignalBus.player_swing.emit()
 		if bug_health == 0:
-			#Global_Var.
+			for bug in Global_Var.bugDict[room]:
+				if(bug[2] == $"."):
+					print(bug[2]);
+					Global_Var.bugDict[room].erase(bug);
 			Global_Var.add_to_var("fertilizer", 1)
 			self.free()
 			
