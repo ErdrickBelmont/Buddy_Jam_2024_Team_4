@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnx407bfco1td"]
+[gd_scene load_steps=7 format=3 uid="uid://bnx407bfco1td"]
 
 [ext_resource type="TileSet" uid="uid://1pn5u4mhvren" path="res://assets/tilemap/forest-bg/tileset_forest-bg.tres" id="1_lghj5"]
 [ext_resource type="Script" path="res://scripts/areaSpawn.gd" id="2_cxvk2"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://o2ccda48gwcu" path="res://scenes/gates/gate_left.tscn" id="4_ov83d"]
 [ext_resource type="PackedScene" uid="uid://ds7p6hy846akj" path="res://scenes/gates/gate_right.tscn" id="5_mobtu"]
 [ext_resource type="PackedScene" uid="uid://b3c68g48cbkj8" path="res://scenes/gates/gate_up.tscn" id="6_0fejp"]
-[ext_resource type="PackedScene" uid="uid://uebyoy3nrbnk" path="res://scenes/bug.tscn" id="7_tc4fm"]
 
 [node name="Area" type="Node2D"]
 
@@ -27,6 +26,3 @@ position = Vector2(1250, 0)
 
 [node name="GateUp" parent="." instance=ExtResource("6_0fejp")]
 position = Vector2(0, -750)
-
-[node name="Bug" parent="." instance=ExtResource("7_tc4fm")]
-position = Vector2(-860, 409)
