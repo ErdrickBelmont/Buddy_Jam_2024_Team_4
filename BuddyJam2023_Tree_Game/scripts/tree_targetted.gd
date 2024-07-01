@@ -75,14 +75,14 @@ func _process(delta):
 				print(tree_health)
 				if(tree_health == 0):
 					#Change sprite
-					Global_Var.treeDict[room][2] = 3;
+					Global_Var.treeDict[room][treeDictIndex][2] = 3;
 					sprite.set_cell(0, Vector2(-1, -1), 1, 3, 0);
 					current_tree_state = tree_states.CHOPPED
 					print("trees been chopped")
 			tree_states.CHOPPED:
 				if(Global_Var.dic.fertilizer > 0):
 					#Change sprite
-					Global_Var.treeDict[room][2] = 4;
+					Global_Var.treeDict[room][treeDictIndex][2] = 4;
 					sprite.set_cell(0, Vector2(-1, -1), 1, 4, 0);
 					fertilize.play()
 					current_tree_state = tree_states.FIRTALIZED

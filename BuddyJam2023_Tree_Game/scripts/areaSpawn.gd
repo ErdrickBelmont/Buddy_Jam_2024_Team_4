@@ -216,10 +216,13 @@ func generateBugs(code):
 	var y; 
 	#var attempts = 0;
 	while(bugDict[code].size() < bugsToGenerate):
+		print("Generated bug!")
 		#Unlike the trees, the bugs can be placed literally anywhere within bounds. That's really nice for me, writing this code.
 		x = rng.randi_range(-5600, 5600);
 		y = rng.randi_range(-3400, 2500)
 		bugDict[code].append([x, y]);
+	print(bugDict[code]);
+	Global_Var.bugDict[code] = bugDict[code];
 	
 #Generates trees
 func generateTrees(code):

@@ -123,6 +123,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="wood" type="Panel" parent="Panel3"]
 z_index = 1
+layout_mode = 0
 offset_left = -45.0005
 offset_top = 589.0
 offset_right = -45.0005
@@ -153,6 +154,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Fertilizer" type="Panel" parent="Panel3"]
 z_index = 1
+layout_mode = 0
 offset_left = -40.0005
 offset_top = 1188.0
 offset_right = -40.0005
