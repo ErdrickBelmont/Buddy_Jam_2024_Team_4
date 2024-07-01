@@ -59,9 +59,9 @@ func generateMap():
 			#print("Generated room " + roomToAdd);
 			#print("Queue left: ");
 			#print(queue)
-			#print(Global_Var.treeDict);
 		elif(roomToAdd != null):
 			queue.erase(roomToAdd);
+	#print(Global_Var.map.size());
 	
 	
 func addRoom(code):
@@ -100,7 +100,7 @@ func addRoom(code):
 		#print(areaPicked);
 		if (Global_Var.areas[areaPicked].size() > (numToGenerate-numGenerated-queue.size())):
 			attempts += 1;
-		if(attempts > 500):
+		if(attempts > 100000):
 			break;
 		#Edge case: Not enough rooms generated but the queue is empty. We can't hit a dead end
 		if(Global_Var.areas[areaPicked].size() == 1 && queue.size() == 0 && numGenerated < numToGenerate):
