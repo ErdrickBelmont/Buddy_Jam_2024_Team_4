@@ -2,7 +2,7 @@ extends Area2D
 
 
 func _ready():
-	self.get_child(-1).set_visible(false) 
+	get_node("CanvasLayer2").set_visible(false) 
 
 #func resume():
 	#get_tree().paused = false

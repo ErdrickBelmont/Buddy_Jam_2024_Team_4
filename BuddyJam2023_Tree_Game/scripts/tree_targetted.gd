@@ -8,6 +8,9 @@ var cursor_select: bool = false
 var mouse_on_tree: bool = false
 @onready var collectwood = $collectwood
 @onready var fertilize = $fertilize
+var treeDictIndex;
+var room;
+var sprite;
 
 #func _on_tree_collider_child_entered_tree(area):	
 	##f area.is_in_group("player"):
@@ -18,6 +21,25 @@ var mouse_on_tree: bool = false
 	##f area.is_in_group("player"):
 		#get_node(".").set_visible(false)
 		#print("left tree collider")
+		
+func _ready():
+	sprite = get_node("sprite");
+	room = Global_Var.position;
+	for n in range(Global_Var.treeDict[room].size()):
+		var tree = Global_Var.treeDict[room][n];
+		#Only necessary if the tree has already been instantiated, because on first-time spawn it will always be GROWN
+		if(tree.size() > 3):
+			var treeName = tree[3].name;
+			if(str(treeName) == name): 
+				treeDictIndex = n;
+				match tree[2]:
+					3:
+						current_tree_state = tree_states.CHOPPED;
+					4:
+						current_tree_state = tree_states.FIRTALIZED;
+	if(treeDictIndex == null):
+		treeDictIndex = -1;
+	print(treeDictIndex);
 
 
 func _on_area_entered(area):
@@ -52,10 +74,16 @@ func _process(delta):
 				Global_Var.add_to_var("energy", -1)
 				print(tree_health)
 				if(tree_health == 0):
+					#Change sprite
+					Global_Var.treeDict[room][2] = 3;
+					sprite.set_cell(0, Vector2(-1, -1), 1, 3, 0);
 					current_tree_state = tree_states.CHOPPED
 					print("trees been chopped")
 			tree_states.CHOPPED:
 				if(Global_Var.dic.fertilizer > 0):
+					#Change sprite
+					Global_Var.treeDict[room][2] = 4;
+					sprite.set_cell(0, Vector2(-1, -1), 1, 4, 0);
 					fertilize.play()
 					current_tree_state = tree_states.FIRTALIZED
 					print("fertilized")

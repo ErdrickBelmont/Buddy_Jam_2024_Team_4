@@ -32,9 +32,10 @@ var position = "0_0" #lol, face
 var day = 1
 var stormCounter = 0
 
-#Dictionaries for storing current trees & bugs on the map
-var treeDict = {}
-var bugDict = {}
+#Dictionaries for storing current trees & bugs on the map, and just one variable for the ship
+var treeDict = {};
+var bugDict = {};
+var ship;
 
 #David's variables
 var dic : Dictionary = {"wood": 0,"woodExportTracker": 0, "woodExportCap": 100,"fortificationTracker": 0,"fortificationCost": 10, "energy": 0, "maxEnergy": 10, "fertilizer": 0,"quotaTracker":0, "quota": 100 }

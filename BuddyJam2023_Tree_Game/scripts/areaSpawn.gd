@@ -20,6 +20,7 @@ var topDoorRooms = ["center", "bottomEdge", "bottomFork", "leftBottom", "rightBo
 #Dictionary of trees in each area. Each tree has an x, y, and state, corresponding to index 0, 1, 2 in the subarray.
 #Basically, the key is the room code, and then the value is an array of 
 var treeDict;
+var bugDict;
 
 func _ready():
 	#print(get_parent().get_parent().get_parent().get_children());
@@ -27,6 +28,7 @@ func _ready():
 	spawnNode = get_tree().root.get_node("Root_Node2D").get_node("RoomToRoom");
 	#print(spawnNode)
 	treeDict = Global_Var.treeDict;
+	bugDict = Global_Var.bugDict;
 	#Start with the center room. This is always an area_center type.
 	if(Global_Var.newMapNeeded):
 		Global_Var.map["0_0"] = "center";
@@ -46,6 +48,7 @@ func generateMap():
 			#print(roomToAdd);
 			addRoom(roomToAdd);
 			generateTrees(roomToAdd);
+			generateBugs(roomToAdd);
 			#print(Global_Var.treeDict);
 		elif(roomToAdd != null):
 			queue.erase(roomToAdd);
@@ -165,7 +168,21 @@ func arrIntersect(arr1, arr2):
 		if arr2.has(arrItem):
 			intersection.append(arrItem);
 	return intersection;
-
+	
+#Generates bugs for a given room
+func generateBugs(code):
+	bugDict[code] = [];
+	#Place 2-5 bugs
+	var bugsToGenerate = rng.randi_range(2, 5);
+	var x;
+	var y; 
+	#var attempts = 0;
+	while(bugDict[code].size() < bugsToGenerate):
+		#Unlike the trees, the bugs can be placed literally anywhere within bounds. That's really nice for me, writing this code.
+		x = rng.randi_range(-5600, 5600);
+		y = rng.randi_range(-3400, 2500)
+		bugDict[code].append([x, y]);
+	
 #Generates trees
 func generateTrees(code):
 	#print("Code: ", code);
@@ -193,8 +210,7 @@ func generateTrees(code):
 		else: #Place on bottom half
 			y = rng.randi_range(1750, 2500)
 		if(!treeIntersection(code, x, y)):
-			var treeType = rng.randi_range(0, 0);
-			treeDict[code].append([x, y, treeType]);
+			treeDict[code].append([x, y, 0]);
 			attempts = 0;
 		else:
 			attempts += 1;
@@ -214,4 +230,3 @@ func treeIntersection(code, x, y):
 		if(abs(treeX-x) < 1584 && abs(treeY-y) < 1326):
 			return true;
 	return false;
-	

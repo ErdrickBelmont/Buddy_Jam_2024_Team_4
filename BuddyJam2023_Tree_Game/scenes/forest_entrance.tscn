@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bq4tnwwwxkc0l"]
+[gd_scene load_steps=7 format=3 uid="uid://bq4tnwwwxkc0l"]
 
 [ext_resource type="PackedScene" uid="uid://bnx407bfco1td" path="res://scenes/areas/area_center.tscn" id="1_rytgd"]
 [ext_resource type="Script" path="res://scripts/movePlayer.gd" id="1_xoc50"]
 [ext_resource type="Script" path="res://scripts/areaSpawn.gd" id="2_l7dfm"]
 [ext_resource type="PackedScene" uid="uid://dd8kuirq1mqtj" path="res://scenes/Player.tscn" id="3_lgsmn"]
 [ext_resource type="Script" path="res://scripts/roomSwitchTimer.gd" id="6_j5qde"]
-[ext_resource type="PackedScene" uid="uid://b0xgrvvhn1m1l" path="res://scenes/ship.tscn" id="6_qwurq"]
 
 [sub_resource type="GDScript" id="GDScript_gbfty"]
 script/source = "extends Node2D
@@ -57,8 +56,6 @@ script = ExtResource("2_l7dfm")
 
 [node name="Timer" type="Timer" parent="."]
 script = ExtResource("6_j5qde")
-
-[node name="ship" parent="." instance=ExtResource("6_qwurq")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
