@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bq4tnwwwxkc0l"]
+[gd_scene load_steps=15 format=3 uid="uid://bq4tnwwwxkc0l"]
 
 [ext_resource type="PackedScene" uid="uid://bnx407bfco1td" path="res://scenes/areas/area_center.tscn" id="1_rytgd"]
 [ext_resource type="Script" path="res://scripts/movePlayer.gd" id="1_xoc50"]
 [ext_resource type="Script" path="res://scripts/areaSpawn.gd" id="2_l7dfm"]
 [ext_resource type="PackedScene" uid="uid://dd8kuirq1mqtj" path="res://scenes/Player.tscn" id="3_lgsmn"]
+[ext_resource type="AudioStream" uid="uid://byawj7wn0aapn" path="res://assets/audio/Forest Heart.wav" id="6_6baeu"]
 [ext_resource type="Script" path="res://scripts/roomSwitchTimer.gd" id="6_j5qde"]
+[ext_resource type="Script" path="res://scripts/update_label_script.gd" id="7_1fw60"]
+[ext_resource type="Texture2D" uid="uid://o8o8bkvqhymu" path="res://assets/icons/energy.png" id="7_upcbp"]
+[ext_resource type="Texture2D" uid="uid://dxcsfv1x1wsn4" path="res://assets/icons/wood.png" id="9_a15sb"]
+[ext_resource type="Texture2D" uid="uid://c8j4qoebudf81" path="res://assets/icons/fertilizer.png" id="10_my7s1"]
 
 [sub_resource type="GDScript" id="GDScript_gbfty"]
 script/source = "extends Node2D
@@ -14,6 +19,16 @@ script/source = "extends Node2D
 	#print(\"Goomba\")
 	#get_node(\"RoomToRoom\").updatePos();
 "
+
+[sub_resource type="LabelSettings" id="LabelSettings_iej4q"]
+font_size = 450
+
+[sub_resource type="LabelSettings" id="LabelSettings_qt8yq"]
+line_spacing = 0.0
+font_size = 450
+
+[sub_resource type="LabelSettings" id="LabelSettings_dpcx8"]
+font_size = 450
 
 [node name="Root_Node2D" type="Node2D"]
 script = SubResource("GDScript_gbfty")
@@ -37,6 +52,142 @@ script = ExtResource("2_l7dfm")
 
 [node name="Timer" type="Timer" parent="."]
 script = ExtResource("6_j5qde")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6baeu")
+autoplay = true
+
+[node name="Panel3" type="Panel" parent="."]
+z_index = 1
+offset_left = -6630.0
+offset_top = -4671.0
+offset_right = -6630.0
+offset_bottom = -4671.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel3"]
+position = Vector2(-771, 333)
+scale = Vector2(3.32775, 3.9902)
+texture = ExtResource("7_upcbp")
+
+[node name="EnergyInt" type="Label" parent="Panel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_left = -501.0
+offset_top = 68.0
+offset_right = 507.0
+offset_bottom = 681.0
+text = "TEST"
+label_settings = SubResource("LabelSettings_iej4q")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_1fw60")
+metadata/_edit_use_anchors_ = true
+
+[node name="slash" type="Label" parent="Panel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.468
+anchor_top = 0.119
+anchor_right = 0.536
+anchor_bottom = 0.742
+offset_left = 734.0
+offset_top = -534.0
+offset_right = 910.0
+offset_bottom = 692.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+/"
+label_settings = SubResource("LabelSettings_qt8yq")
+metadata/_edit_use_anchors_ = true
+
+[node name="EnergyCapInt" type="Label" parent="Panel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_left = 1179.0
+offset_top = 68.0
+offset_right = 2187.0
+offset_bottom = 681.0
+text = "TEST"
+label_settings = SubResource("LabelSettings_dpcx8")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_1fw60")
+metadata/_edit_use_anchors_ = true
+
+[node name="wood" type="Panel" parent="Panel3"]
+z_index = 1
+offset_left = -45.0005
+offset_top = 589.0
+offset_right = -45.0005
+offset_bottom = 589.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="wood" type="Sprite2D" parent="Panel3/wood"]
+position = Vector2(-771, 333)
+scale = Vector2(3.32775, 3.9902)
+texture = ExtResource("9_a15sb")
+
+[node name="WoodInt" type="Label" parent="Panel3/wood"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_left = -501.0
+offset_top = 68.0
+offset_right = 507.0
+offset_bottom = 681.0
+text = "TEST"
+label_settings = SubResource("LabelSettings_iej4q")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_1fw60")
+metadata/_edit_use_anchors_ = true
+
+[node name="Fertilizer" type="Panel" parent="Panel3"]
+z_index = 1
+offset_left = -40.0005
+offset_top = 1188.0
+offset_right = -40.0005
+offset_bottom = 1188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel3/Fertilizer"]
+position = Vector2(-771, 333)
+scale = Vector2(3.33178, 3.9902)
+texture = ExtResource("10_my7s1")
+
+[node name="FertilizerInt" type="Label" parent="Panel3/Fertilizer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_left = -501.0
+offset_top = 68.0
+offset_right = 507.0
+offset_bottom = 681.0
+text = "TEST"
+label_settings = SubResource("LabelSettings_iej4q")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_1fw60")
+metadata/_edit_use_anchors_ = true
+
+[node name="UI" type="Panel" parent="."]
+modulate = Color(1, 0, 1, 1)
+offset_left = -7706.0
+offset_top = -4636.0
+offset_right = -7666.0
+offset_bottom = -4596.0
+scale = Vector2(83.5631, 45.8621)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

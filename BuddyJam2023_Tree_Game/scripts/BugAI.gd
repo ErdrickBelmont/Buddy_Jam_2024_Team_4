@@ -42,7 +42,8 @@ func _on_area_2d_body_entered(body):
 	player_contact = true
 	if player_contact == true:
 		bugattack.play()
-		Global_Var.add_to_var("energy", -1)
+		if (Global_Var.get_referance("energy") > 0):
+			Global_Var.add_to_var("energy", -1)
 
 
 

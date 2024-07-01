@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://by53jnt4fhqj6"]
+[gd_scene load_steps=8 format=3 uid="uid://dym4refwelrac"]
 
 [ext_resource type="Script" path="res://scripts/shipUpgradeScene.gd" id="1_2qq1v"]
 [ext_resource type="Script" path="res://scripts/update_label_script.gd" id="1_vjhf5"]
