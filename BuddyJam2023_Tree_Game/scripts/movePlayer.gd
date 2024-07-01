@@ -54,7 +54,7 @@ func spawnTrees(code):
 		return;
 	for tree in Global_Var.treeDict[code]:
 		var instance;
-		if(tree.size() < 4):
+		if(tree.size() < 4 || tree[3] == null):
 			instance = treeScene.instantiate();
 			tree.append(instance);
 		elif(tree.size() == 4):

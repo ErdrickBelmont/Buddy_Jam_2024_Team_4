@@ -11,10 +11,13 @@ func _process(delta):
 	pass
 
 func _on_next_day_pressed():
-	
-	Global_Var.storm_reset()
-	get_tree().change_scene_to_file("res://scenes/forest_entrance.tscn")
+	Global_Var.stormCounter -= 1;
+	if(Global_Var.stormCounter <= 0):
+		Global_Var.stormCounter = 3;
+		Global_Var.storm_reset()
 	basetheme.stop()
+	get_tree().change_scene_to_file("res://scenes/forest_entrance.tscn")
+	
 
 func _on_submit_wood_quota_pressed():
 	var quota_difference : int = (Global_Var.get_referance("quota") - Global_Var.get_referance("qoutaTracker"))

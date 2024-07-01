@@ -30,7 +30,7 @@ var moveCooldown = true #When true, player can move to another area
 #And these are more "tracking player's current position".
 var position = "0_0" #lol, face
 var day = 1
-var stormCounter = 0
+var stormCounter = 3
 
 #Dictionaries for storing current trees & bugs on the map, and just one variable for the ship
 var treeDict = {};
@@ -136,4 +136,7 @@ func storm_reset():
 	set_var("energy",dic.maxEnergy)
 	set_var("woodExportTracker",0)
 	set_var("quotaTracker",0)
+	newMapNeeded = true
+	treeDict = {};
+	bugDict = {};
 
