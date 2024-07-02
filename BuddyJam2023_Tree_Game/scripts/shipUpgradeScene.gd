@@ -11,13 +11,18 @@ func _process(delta):
 	pass
 
 func _on_next_day_pressed():
-	Global_Var.stormCounter -= 1;
-	Global_Var.daily_reset()
-	if(Global_Var.stormCounter <= 0):
-		Global_Var.stormCounter = 3;
-		Global_Var.storm_reset()
+	#Global_Var.stormCounter -= 1;
 	basetheme.stop()
-	get_tree().change_scene_to_file("res://scenes/forest_entrance.tscn")
+	if Global_Var.base_fortified == false:
+		get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
+	else:
+		Global_Var.daily_reset()
+		get_tree().change_scene_to_file("res://scenes/forest_entrance.tscn")
+	#if(Global_Var.stormCounter <= 0):
+		#Global_Var.stormCounter = 3;
+		#Global_Var.storm_reset()
+	
+	
 	
 
 func _on_submit_wood_quota_pressed():

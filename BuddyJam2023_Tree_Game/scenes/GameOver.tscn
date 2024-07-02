@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://dgjdcv2ffpi73"]
+
+[ext_resource type="Texture2D" uid="uid://j752x4aatxaq" path="res://assets/title-screen.png" id="1_4fi6y"]
+[ext_resource type="Script" path="res://scenes/GameOver.gd" id="1_qp78p"]
+
+[sub_resource type="SystemFont" id="SystemFont_4vuqk"]
+
+[sub_resource type="Theme" id="Theme_dk7bb"]
+default_font = SubResource("SystemFont_4vuqk")
+
+[sub_resource type="LabelSettings" id="LabelSettings_e6ng6"]
+
+[sub_resource type="SystemFont" id="SystemFont_73jxy"]
+
+[sub_resource type="Theme" id="Theme_7p4de"]
+default_font = SubResource("SystemFont_73jxy")
+default_font_size = 64
+
+[sub_resource type="SystemFont" id="SystemFont_ku6dj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a3uej"]
+
+[sub_resource type="SystemFont" id="SystemFont_waa27"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -34.0
+offset_right = -7.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qp78p")
+
+[node name="Title-screen" type="Sprite2D" parent="."]
+position = Vector2(969, 545)
+texture = ExtResource("1_4fi6y")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.062
+anchor_right = 0.185
+anchor_bottom = 0.137
+offset_left = -0.400002
+offset_top = -0.480003
+offset_right = -230.2
+offset_bottom = -54.48
+scale = Vector2(3.65057, 3.263)
+theme = SubResource("Theme_dk7bb")
+text = "Game Over"
+label_settings = SubResource("LabelSettings_e6ng6")
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.235
+anchor_right = 0.189
+anchor_bottom = 0.493
+offset_left = 14.0
+offset_top = -0.400009
+offset_right = 0.119995
+offset_bottom = 0.279968
+theme = SubResource("Theme_7p4de")
+theme_override_fonts/font = SubResource("SystemFont_ku6dj")
+theme_override_font_sizes/font_size = 64
+text = "You failed to meet Quota and were fired. 
+Your ship is repossessed and they leave you 
+stranded on the planet. "
+label_settings = SubResource("LabelSettings_a3uej")
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.235
+anchor_right = 0.189
+anchor_bottom = 0.493
+offset_left = 16.0
+offset_top = 87.6
+offset_right = 2.12
+offset_bottom = 88.28
+theme = SubResource("Theme_7p4de")
+theme_override_fonts/font = SubResource("SystemFont_ku6dj")
+theme_override_font_sizes/font_size = 64
+text = "The daily storm hits before you finish your 
+shelter & you die in the storm"
+label_settings = SubResource("LabelSettings_a3uej")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 649.0
+offset_right = 995.0
+offset_bottom = 902.0
+theme_override_fonts/font = SubResource("SystemFont_waa27")
+theme_override_font_sizes/font_size = 32
+text = "return to title screen"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -38,9 +38,13 @@ var bugDict = {};
 var ship;
 
 #David's variables
-var dic : Dictionary = {"wood": 0,"woodExportTracker": 0, "woodExportCap": 100,"fortificationTracker": 0,"fortificationCost": 10, "energy": 0, "maxEnergy": 250, "fertilizer": 0,"quotaTracker":0, "quota": 100 }
+var dic : Dictionary = {"wood": 0,"woodExportTracker": 0, "woodExportCap": 100,"fortificationTracker": 0,"fortificationCost": 25, "energy": 0, "maxEnergy": 75, "fertilizer": 0,"quotaTracker":0, "quota": 100 }
 
 var base_fortified: bool = false
+var quota_reached: bool = false
+var Days_till_qouta: int = 3
+var qouta_counter: int = 3
+var Day_counter: int = 1
 
 func _ready():
 	set_var("energy",dic.maxEnergy)
@@ -71,6 +75,8 @@ func get_referance(in_val: String):
 			return dic.map
 		"treeDict":
 			return dic.treeDict
+		"qouta_counter":
+			return Global_Var.qouta_counter
 		_:
 			return 0
 		
@@ -137,20 +143,39 @@ func lowerBoundCheck(currentInt:int, minimumRequired:int) -> bool:
 		return true
 
 func daily_reset():
+	if base_fortified == false:
+		get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
 	set_var("energy",dic.maxEnergy)
+	set_var("woodExportTracker",0)
 	base_fortified = false
+	set_var("fortificationTracker", 0)
+	qouta_counter -= 1
 	for key in treeDict:
 		var roomList = treeDict.get(key)
 		for tree in roomList:
 			if tree[2] == 3:
 				treeDict.get(key).erase(tree)
+			#elif tree[2] == 4:
+				#var temp_dick = tree.slice(0,2,true).append(1)
+				#treeDict.erase(tree)
+				#treeDict.append(temp_dick)
+				
+				
 
 func storm_reset():
+	if quota_reached == false || base_fortified == false:
+		get_tree().change_scene_to_file("res://scenes/GameOver.tscn")
 	base_fortified = false
+	quota_reached = false
+	set_var("quota",get_referance("quota") * 3)
+	set_var("fortificationCost",get_referance("fortificationCost") * 2)
+	set_var("maxEnergy",get_referance("maxEnergy") * 2)
+	Days_till_qouta *= 2
+	qouta_counter = Days_till_qouta
 	set_var("energy",dic.maxEnergy)
 	set_var("woodExportTracker",0)
 	set_var("quotaTracker",0)
 	newMapNeeded = true
-	#treeDict = {};
+	treeDict = {};
 	bugDict = {};
 

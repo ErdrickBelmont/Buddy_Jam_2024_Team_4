@@ -39,6 +39,9 @@ func _ready():
 		"fortificationTrackerInt":
 			relevantGlobalInt = "fortificationTracker"
 			self.text = str(Global_Var.get_referance("fortificationTracker"))
+		"qouta_counter":
+			relevantGlobalInt = "qouta_counter"
+			self.text = str(Global_Var.get_referance("qouta_counter"))
 		_:
 			print("error: name of node attached not recognized")
 

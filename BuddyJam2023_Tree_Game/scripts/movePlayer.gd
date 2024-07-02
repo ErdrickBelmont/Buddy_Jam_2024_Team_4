@@ -84,8 +84,9 @@ func spawnBugs(code):
 		elif(bug.size() == 4):
 			instance = bug[3];
 		add_child(instance);
-		instance.position.x = bug[0];
-		instance.position.y = bug[1];
+		if instance != null:
+			instance.position.x = bug[0];
+			instance.position.y = bug[1];
 		#print("Added bug:");
 		#print(instance);
 

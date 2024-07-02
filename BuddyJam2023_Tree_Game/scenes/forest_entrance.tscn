@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bq4tnwwwxkc0l"]
+[gd_scene load_steps=16 format=3 uid="uid://bq4tnwwwxkc0l"]
 
 [ext_resource type="PackedScene" uid="uid://bnx407bfco1td" path="res://scenes/areas/area_center.tscn" id="1_rytgd"]
 [ext_resource type="Script" path="res://scripts/movePlayer.gd" id="1_xoc50"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://o8o8bkvqhymu" path="res://assets/icons/energy.png" id="7_upcbp"]
 [ext_resource type="Texture2D" uid="uid://dxcsfv1x1wsn4" path="res://assets/icons/wood.png" id="9_a15sb"]
 [ext_resource type="Texture2D" uid="uid://c8j4qoebudf81" path="res://assets/icons/fertilizer.png" id="10_my7s1"]
+[ext_resource type="Texture2D" uid="uid://c16qs8j3orlq5" path="res://scenes/timer.png" id="11_r57jg"]
 
 [sub_resource type="GDScript" id="GDScript_gbfty"]
 script/source = "extends Node2D
@@ -168,6 +169,37 @@ scale = Vector2(3.33178, 3.9902)
 texture = ExtResource("10_my7s1")
 
 [node name="FertilizerInt" type="Label" parent="Panel3/Fertilizer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.988
+offset_left = -501.0
+offset_top = 68.0
+offset_right = 507.0
+offset_bottom = 681.0
+text = "TEST"
+label_settings = SubResource("LabelSettings_iej4q")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_1fw60")
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Panel" parent="Panel3"]
+z_index = 1
+layout_mode = 0
+offset_left = 1634.0
+offset_top = 1188.0
+offset_right = 1634.0
+offset_bottom = 1188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel3/Timer"]
+position = Vector2(-797.887, 380.867)
+scale = Vector2(0.570533, 0.568619)
+texture = ExtResource("11_r57jg")
+
+[node name="qouta_counter" type="Label" parent="Panel3/Timer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
